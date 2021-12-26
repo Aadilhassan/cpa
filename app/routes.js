@@ -76,6 +76,26 @@ module.exports = function(app, passport) {
   });
  });
 
+ // -------postback ---start ----------
+ app.get('/postback', function (req, res) {
+  let password = req.query.password
+  let virtual_currency = req.query.virtual_currency
+  let subid = req.query.subid
+  let pass = 7091
+  let sql = "UPDATE users set points=? WHERE id = ?";
+  //  connection.query("UPDATE users SET ? WHERE id = ?", [{ points: virtual_currency }, subid])
+
+  connection.query(sql, [virtual_currency, subid], function (err, result) {
+   console.log("Record Updated!!");
+   console.log(result);
+  });
+
+
+
+  // connection.query(`UPDATE users SET points = ${virtual_currency} WHERE id = ${subid}`)
+  // });
+ };
+ // ------postback --ends--------------
 
 
  app.get('/logout', function(req,res){
