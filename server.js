@@ -1,13 +1,13 @@
-var express = require('express');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
-var app = express();
-var port = process.env.PORT || 8080;
+let express = require('express');
+let session = require('express-session');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let morgan = require('morgan');
+let app = express();
+let port = process.env.PORT || 8080 || 8888;
 
-var passport = require('passport');
-var flash = require('connect-flash');
+let passport = require('passport');
+let flash = require('connect-flash');
 
 require('./config/passport')(passport);
 const cors=require("cors");

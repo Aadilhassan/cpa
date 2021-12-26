@@ -90,11 +90,11 @@ module.exports = function(app, passport) {
    console.log(result);
   });
 
-
+  res.send("money added");
 
   // connection.query(`UPDATE users SET points = ${virtual_currency} WHERE id = ${subid}`)
   // });
- };
+ });
  // ------postback --ends--------------
 
 
@@ -103,10 +103,12 @@ module.exports = function(app, passport) {
   res.redirect('/');
  })
 
- app.get('/postback', function (req, res) {
-  req.param('subid')
-  res.send('hello postback')
- })
+ // app.get('/postback', function (req, res) {
+ //  req.param('subid')
+ //  res.send('hello postback')
+ // })
+
+
 
 };
 
