@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Register</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark ">
+    <a class="navbar-brand">Navbar</a>
+
+    <span style="float:right">
+  <a  href="/earnings">  <button class="btn btn-outline-primary " >Earnings: $<%= user.points %> </button>  </a>
+ <a  href="/profile">  <button class="btn btn-outline-success my-2 my-sm-0" >Profile</button>  </a>
+
+    <a  href="/logout">  <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>  </a>
+</span>
+
+    <!--    <a href="/profile"  class="btn btn-success btn-sm aling-left">Profile</a>-->
+    <!--    <a href="/logout"  class="btn btn-danger btn-sm aling-left">Logout</a>-->
+</nav>
+
+<div class="card">
+    <h1 class="card-header">Current Balance</h1>
+    <div class="card-body">
+
+       <h2>$<%= user.points %></h2>
+        <a href="/payout" class="btn btn-primary">Withdraw</a>
+    </div>
+</div>
+<div style="float: right; margin-top: 40px; margin-right: 20px"><a  href="/dashboard">  <button class="btn btn-outline-success my-2 my-sm-0" >Back to Dashboard</button>  </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        html{
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-dark bg-dark ">
+    <a class="navbar-brand">Navbar</a>
+
+     <span style="float:right">
+          <a  href="/earnings">  <button class="btn btn-outline-primary my-2 my-sm-0" >Earnings: $<%= user.points %></button>  </a>
+          <a  href="/profile">  <button class="btn btn-outline-success my-2 my-sm-0" >Profile</button>  </a>
+          <a  href="/logout">  <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>  </a>
+</span>
+
+<!--    <a href="/profile"  class="btn btn-success btn-sm aling-left">Profile</a>-->
+<!--    <a href="/logout"  class="btn btn-danger btn-sm aling-left">Logout</a>-->
+</nav>
+<div >
+    <h1>Dashboard</h1>
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.id %>&country=IN&geoip=user&ua=user&format=JSONP&callback=?",
+            function(data)
+            {
+                var offers = '';
+                $.each(data.offers, function(o, offer)
+                {
+                    offers += '<a href="'+offer.link+'" class="list-group-item"><h2>'+offer.title+ '</h2><span style="float: right">$'+ offer.amount+'</span></a>';
+                });
+                $(".offer-list").html(offers);
+                $(".progress").hide();
+            });
+    });
+</script>
+
+<div> UserName :<%= user.username %>  </div>
+<div id="link"></div>
+<div class="list-group offer-list"></div>
+</body>
+</html>
