@@ -26,14 +26,18 @@ module.exports = function(app, passport) {
       failureRedirect: '/login',
       failureFlash: true
      }),
-     function (req, res) {
-      if (req.body.remember) {
-       req.session.cookie.maxAge = 1000 * 60 * 3;
-      } else {
-       req.session.cookie.expires = false;
-      }
-      res.redirect('/');
+     function(req, res) {
+      res.redirect('/~' + req.user.username);
      });
+  //    function (req, res) {
+  // console.log(req.body)
+  //     if (req.body.remember) {
+  //      req.session.cookie.maxAge = 1000 * 60 * 3;
+  //     } else {
+  //      req.session.cookie.expires = false;
+  //     }
+  //     res.redirect('/');
+  //    });
 
  app.get('/signup', function (req, res) {
   res.render('signup.ejs', {message: req.flash('signupMessage')});

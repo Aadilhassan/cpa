@@ -1,9 +1,9 @@
-var LocalStrategy = require("passport-local").Strategy;
+let LocalStrategy = require("passport-local").Strategy;
 
-var mysql = require('mysql');
-var bcrypt = require('bcrypt');
-var dbconfig = require('./database');
-var connection = mysql.createConnection(dbconfig.connection);
+let mysql = require('mysql');
+let bcrypt = require('bcrypt');
+let   dbconfig = require('./database');
+let connection = mysql.createConnection(dbconfig.connection);
 
 connection.query('USE ' + dbconfig.database);
 
@@ -13,7 +13,7 @@ module.exports = function(passport) {
  });
 
  passport.deserializeUser(function(id, done) {
-  connection.query("select * from users where id = id",function(err,rows){
+  connection.query("select * from users where id =" +id,function(err,rows){
    done(err, rows[0]);
   });
  });
@@ -26,9 +26,11 @@ module.exports = function(passport) {
    passwordField: 'password',
    passReqToCallback: true
   },
-  function(req, username, password, done){
+      (req, username, password, done) => {
    connection.query("SELECT * FROM users WHERE email = ? ", [username],
    function(err, rows){
+    console.log(rows[0])
+
     if(err)
      return done(err);
     if(!rows.length){
@@ -65,12 +67,12 @@ module.exports = function(passport) {
 
         // if there is no user with that email
         // create the user
-        var newUserMysql = new Object();
+        let newUserMysql = new Object();
 
         newUserMysql.email    = email;
         newUserMysql.password = password; // use the generateHash function in our user model
 
-        var insertQuery = "INSERT INTO users ( user_email, user_password,) values ('" + email +"','"+ password +"')";
+        let insertQuery = "INSERT INTO users ( user_email, user_password,) values ('" + email +"','"+ password +"')";
         console.log(insertQuery);
         connection.query(insertQuery,function(err,rows){
          // newUserMysql.id = rows.insertId;
