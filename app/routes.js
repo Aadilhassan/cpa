@@ -86,18 +86,17 @@ module.exports = function(app, passport) {
   let virtual_currency = req.query.virtual_currency
   let subid = req.query.subid
   let pass = 7091
-  let sql = "UPDATE users set points=? WHERE id = ?";
-  //  connection.query("UPDATE users SET ? WHERE id = ?", [{ points: virtual_currency }, subid])
 
-  connection.query(sql, [virtual_currency, subid], function (err, result) {
-   console.log("Record Updated!!");
-   console.log(result);
-  });
 
-  res.send("money added");
+ let sql = "UPDATE users set points= points+? WHERE id = ?";
+ //  connection.query("UPDATE users SET ? WHERE id = ?", [{ points: virtual_currency }, subid])
 
-  // connection.query(`UPDATE users SET points = ${virtual_currency} WHERE id = ${subid}`)
-  // });
+ connection.query(sql, [virtual_currency, subid], function (err, result) {
+  console.log("Record Updated!!");
+  console.log(result);
+  res.send(` virtual_currency "money added"`);
+
+ });
  });
  // ------postback --ends--------------
 
