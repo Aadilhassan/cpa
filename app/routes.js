@@ -85,20 +85,54 @@ module.exports = function(app, passport) {
   let password = req.query.password
   let virtual_currency = req.query.virtual_currency
   let subid = req.query.subid
+  let mail = req.query.email
   let pass = 7091
 
 
  let sql = "UPDATE users set points= points+? WHERE id = ?";
- //  connection.query("UPDATE users SET ? WHERE id = ?", [{ points: virtual_currency }, subid])
 
  connection.query(sql, [virtual_currency, subid], function (err, result) {
   console.log("Record Updated!!");
   console.log(result);
-  res.send(` virtual_currency "money added"`);
+  // res.send(` virtual_currency "money added"`);
 
  });
+
+  // ------Getting data for history logs--------
+ let his = "INSERT INTO logs (id, points) VALUES ?";
+  let values =[
+      [req.query.subid, req.query.virtual_currency]
+  ];
+  connection.query(his,  [values], function (err, result) {
+   console.log("Record added to the logs !!");
+   console.log(result);
+
+   res.send(` virtual_currency "money added"`);
+  });
+
+  // -----ending history logs -----------
+
  });
+
  // ------postback --ends--------------
+
+
+ let obj = {};
+ app.get('/data', function(req, res){
+let sql = "SELECT * FROM logs Where id = ?"
+
+  connection.query(sql,[req.query.id], function(err, result) {
+
+   if(err){
+    throw err;
+   } else {
+    obj = {print: result};
+    res.render('print', obj);
+   }
+  });
+
+ });
+
 
 
  app.get('/logout', function(req,res){

@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    .css-serial {
+        counter-reset: serial-number;  /* Set the serial number counter to 0 */
+    }
+
+    .css-serial td:first-child:before {
+        counter-increment: serial-number;  /* Increment the serial number counter */
+        content: counter(serial-number);  /* Display the counter */
+    }
+</style>
+</head>
+<body>
+
+
+<table class="table css-serial" >
+    <thead class="thead-dark">
+    <tr>
+        <th>sr.no</th>
+        <th>money</th>
+        <th>time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% print.forEach(function (log) { %>
+        <tr>
+            <td></td>
+            <td><%= log.points %></td>
+            <td><%= log.time %></td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+</body>
+
+</html>
