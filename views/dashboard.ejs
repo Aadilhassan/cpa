@@ -11,6 +11,12 @@
 
 </head>
 <body>
+<div class="ch">
+<script>
+    if(`<%= user.verified %> = 0`){
+        document.getElementsByClassName('ch').innerHTML = "Paragraph changed!";
+    }
+</script>
 <nav class="navbar navbar-dark bg-dark ">
     <a class="navbar-brand" href="dashboard.ejs">Navbar</a>
 
@@ -75,6 +81,6 @@
 
 
 
-
+</div>
 </body>
 </html>

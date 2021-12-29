@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const https = require('https');
 const {data} = require("express-session");
 const app = require("express-session");
-
+const nodemailer = require('nodemailer');
 
 let connection = mysql.createConnection(dbconfig.connection);
 
@@ -65,9 +65,47 @@ module.exports = function(app, passport) {
  });
 
  app.get('/dashboard', isLoggedIn, function (req, res) {
-  res.render('dashboard.ejs', {
-   user: req.user
-  });
+  console.log(req.user.verified)
+
+  try {
+
+   if(req.user.verified === 0) {
+    return res.render('verify.ejs',{
+     user: req.user
+    });
+   }
+
+   res.render('dashboard.ejs',{
+    user: req.user
+   });
+  } catch (err) {
+   res.render({err})
+  }
+
+
+
+
+
+
+//  if (req.user.verified = 0){
+//  res.render('dashboard.ejs', {
+//   user: req.user
+//  });
+//
+// }else if(req.user.verified = 1){
+//  res.render('verify.ejs',{
+//   user: req.user
+//  });
+// }
+
+
+
+
+
+
+
+
+
  });
  app.get('/profile', isLoggedIn, function (req, res) {
   res.render('profile.ejs', {
@@ -79,6 +117,49 @@ module.exports = function(app, passport) {
    user: req.user
   });
  });
+ app.post('/verify', isLoggedIn ,function(req, res){
+  let transporter = nodemailer.createTransport({
+   service: 'gmail',
+   auth: {
+    user: 'templateplanets@gmail.com',
+    pass: '7091487474'
+   }
+  });
+  const mailOptions = {
+   from: 'templateplanets.com', // sender address
+   to: `${req.user.email}`, // list of receivers
+   subject: 'Subject of your email', // Subject line
+   html: `<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}">verify</a>`// plain text body
+  };
+  transporter.sendMail(mailOptions, function (err, info) {
+   if(err)
+    console.log(err)
+   else
+    console.log(info);
+  });
+  res.send("Email sent check your inbox");
+ });
+
+
+
+
+
+
+ app.get('/email', function (req,res){
+  let em = req.query.email
+
+  let sql = " UPDATE users SET ? WHERE ?"
+  connection.query(sql,[{verified: 1}, {email: em}], function (err, result) {
+   if (err) throw err;
+   console.log(" email updated");
+  });
+res.send("email updated")
+ })
+
+
+
+
+
 
  // -------postback ---start ----------
  app.get('/postback', function (req, res) {
