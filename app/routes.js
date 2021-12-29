@@ -126,7 +126,7 @@ module.exports = function(app, passport) {
    }
   });
   const mailOptions = {
-   from: 'templateplanets.com', // sender address
+   from: 'templateplanets@gmail.com', // sender address
    to: `${req.user.email}`, // list of receivers
    subject: 'Subject of your email', // Subject line
    html: `<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}">verify</a>`// plain text body
