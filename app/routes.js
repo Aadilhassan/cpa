@@ -118,15 +118,22 @@ module.exports = function(app, passport) {
   });
  });
  app.post('/verify', isLoggedIn ,function(req, res){
+  const senderMail = "aadilreact@yahoo.com";
   let transporter = nodemailer.createTransport({
-   service: 'gmail',
+   host: 'smtp.mail.yahoo.com',
+   port: 465,
+   service:'yahoo',
+   secure: false,
    auth: {
-    user: 'templateplanets@gmail.com',
-    pass: '7091487474'
-   }
+    user: senderMail,
+    pass: 'ctbdxcruxfpumcmn'
+   },
+   debug: false,
+   logger: true
   });
+
   const mailOptions = {
-   from: 'templateplanets@gmail.com', // sender address
+   from: 'aadilreact@yahoo.com', // sender address
    to: `${req.user.email}`, // list of receivers
    subject: 'Subject of your email', // Subject line
    html: `<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}">verify</a>`// plain text body
