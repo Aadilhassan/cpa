@@ -135,8 +135,12 @@ module.exports = function(app, passport) {
   const mailOptions = {
    from: 'aadilreact@yahoo.com', // sender address
    to: `${req.user.email}`, // list of receivers
-   subject: 'Subject of your email', // Subject line
-   html: `<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}">verify</a>`// plain text body
+   subject: `Email varification for user ${req.user.username}`, // Subject line
+   html: `
+ <h1> hi ${req.user.username}</h1>
+your email varification link is 
+
+<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
   };
   transporter.sendMail(mailOptions, function (err, info) {
    if(err)
