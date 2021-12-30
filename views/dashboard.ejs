@@ -45,13 +45,16 @@
 
 <script type="text/javascript">
     $(function() {
-        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.id %>&country=IN&geoip=user&ua=user&format=JSONP&callback=?",
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.id %>&virtual_currency=&country=IN&geoip=user&ua=user&format=JSONP&callback=?",
             function(data)
             {
+
                 let offers = '';
                 $.each(data.offers, function(o, offer)
+
                 {
-                    offers += '<a href="'+offer.link+'" class="list-group-item"><h2>'+offer.title+ '</h2><span style="float: right">$'+ offer.amount+'</span></a>';
+                    let  mon = Math.floor(offer.amount/2 * 100) / 100
+                    offers += '<a href="'+offer.link+'&virtual_currency='+mon +'" class="list-group-item"><h4>'+offer.title+ '</h4><span style="float: right">$'+ mon+'</span></a>';
                 });
                 $(".offer-list").html(offers);
                 $(".progress").hide();
