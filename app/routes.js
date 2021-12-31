@@ -140,7 +140,7 @@ module.exports = function(app, passport) {
  <h1> hi ${req.user.username}</h1>
 your email varification link is 
 
-<a href="https://nodecpa.azurewebsites.net/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
+<a href="https://cpa-node.herokuapp.com//email?email=${req.user.email}"><button>verify</button></a>`// plain text body
   };
   transporter.sendMail(mailOptions, function (err, info) {
    if(err)
@@ -148,7 +148,7 @@ your email varification link is
    else
     console.log(info);
   });
-  res.send("Email sent check your inbox");
+res.send(`<h3>A verification email has been sent to </h3><h2><bold>${req.user.email}</bold></h2> please check your email inbox`)
  });
 
 
@@ -162,12 +162,25 @@ your email varification link is
   let sql = " UPDATE users SET ? WHERE ?"
   connection.query(sql,[{verified: 1}, {email: em}], function (err, result) {
    if (err) throw err;
-   console.log(" email updated");
+   console.log(" email verified");
   });
-res.send("email updated")
+res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
+
  })
 
-
+ app.post('/email-update',isLoggedIn , function (req,res){
+ let idk = req.user.id
+  let ema = req.body.email;
+  let sql = " UPDATE users SET ? WHERE ?"
+  connection.query(sql,[{email: ema}, {id: idk}], function (err, result) {
+   if (err) throw err;
+   console.log(" email updated");
+  });
+  console.log(ema)
+  res.send(`email updated to ${ema} <script>window.location.replace("/dashboard");
+</script>`)
+  res.redirect('/dashboard')
+ })
 
 
 
