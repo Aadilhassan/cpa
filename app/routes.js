@@ -140,7 +140,7 @@ module.exports = function(app, passport) {
  <h1> hi ${req.user.username}</h1>
 your email varification link is 
 
-<a href="https://cpa-node.herokuapp.com//email?email=${req.user.email}"><button>verify</button></a>`// plain text body
+<a href="https://cpa-node.herokuapp.com/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
   };
   transporter.sendMail(mailOptions, function (err, info) {
    if(err)
