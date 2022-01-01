@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Register</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -54,7 +54,7 @@
 
                 {
                     let  mon = Math.floor(offer.amount/2 * 100) / 100
-                    offers += '<a href="'+offer.link+'&virtual_currency='+mon +'" class="list-group-item"><h4>'+offer.title+ '</h4><span style="float: right">$'+ mon+'</span></a>';
+                    offers += '<a href="'+offer.link+'&virtual_currency='+mon +'" class="list-group-item"><h4>'+offer.title+ '</h4><span style="float: right"> $'+ mon+'</span></a>';
                 });
                 $(".offer-list").html(offers);
                 $(".progress").hide();

@@ -15,11 +15,14 @@
  </style>
 </head>
 <body>
- <div class="container">
-  <div class="col-sm-6 col-sm-offset-3">
-   <h2>Login</h2>
 
-   <% if(message.length > 0) { %>
+ <div class="container" style="border:1px solid darkgrey; border-radius:5px ">
+ <div class="container" style="border: darkgrey; border-radius:5px ">
+  <div class="card">
+  <div class="col-sm-6 col-sm-offset-3">
+  <center><h2>Login</h2></center>
+
+  <% if(message.length > 0) { %>
     <div class="alert alert-danger"><%= message %></div> 
    <% } %>
 
@@ -36,10 +39,11 @@
     <button type="submit" class="btn btn-success btn-lg">Login</button>
    </form>
 
-   <hr>
+
 
    <p>Need an account <a href="/signup">Register</a></p>
    <p>Go Back <a href="/">Home</a>.</p>
+  </div>
   </div>
  </div>
 </body>

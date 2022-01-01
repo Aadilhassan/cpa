@@ -43,26 +43,39 @@ module.exports = function(app, passport) {
   res.render('signup.ejs', {message: req.flash('signupMessage')});
  });
 
- app.post('/signup', async (req, res) => {
-  try {
-   const hashed = await bcrypt.hash(req.body.password, 10)
-   let user = req.body.username;
-   let pass = hashed;
-   let email = req.body.email;
-   let sql = "INSERT INTO users (username, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+ app.post('/signup', async (req, res, done) => {
+  const hashed = await bcrypt.hash(req.body.password, 10)
+  let user = req.body.username;
+  let pass = hashed;
+  let email = req.body.email;
+  connection.query("select * from users where email = '"+email+"'",function(err,rows) {
+   console.log(rows);
 
-   connection.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-   });
-   console.log(req.body);
-   res.send("recieved your request!");
-  } catch {
-   res.redirect('/signup')
-  }
+    try {
+     if( rows.length) {
+      console.log("That email is already taken.")
+     res.send(`That email ${email} is already taken. you can <a href="/login">log in </a> `)
+     }else{
 
 
- });
+
+     let sql = "INSERT INTO users (username, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+
+     connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+     });
+     console.log(req.body);
+     res.send("<h1>Account has been created you can now<a href='/login'> login</a></h1>   <script> setTimeout(function(){\n" +
+         "            window.location.href = 'login';\n" +
+         "         }, 3000);</script>");
+
+    }   }catch {
+     res.send(err)
+    }
+  })
+
+  })
 
  app.get('/dashboard', isLoggedIn, function (req, res) {
   console.log(req.user.verified)
@@ -252,7 +265,7 @@ let sql = "SELECT * FROM logs Where id = ?"
 
 
 
-};
+
 
 
 function isLoggedIn(req, res, next){
@@ -260,4 +273,4 @@ function isLoggedIn(req, res, next){
   return next();
 
  res.redirect('/');
-}
+}}
