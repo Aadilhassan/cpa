@@ -54,7 +54,8 @@ module.exports = function(app, passport) {
     try {
      if( rows.length) {
       console.log("That email is already taken.")
-     res.send(`That email ${email} is already taken. you can <a href="/login">log in </a> `)
+     res.send(`That email ${email} is already taken. you can <a href="/login">log in </a> 
+`)
      }else{
 
 
