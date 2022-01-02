@@ -11,6 +11,7 @@ let flash = require('connect-flash');
 
 require('./config/passport')(passport);
 const cors=require("cors");
+const path = require("express");
 const corsOptions ={
  origin:'*',
  credentials:true,            //access-control-allow-credentials:true
@@ -35,7 +36,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
+app.use('/static', express.static('assets'));
 require('./app/routes.js')(app, passport);
 app.use(cors(corsOptions))
 app.listen(port);
