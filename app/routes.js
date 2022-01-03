@@ -199,6 +199,21 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
 
 
+
+
+// -----------------start payout---------------------------------------
+ app.get('/payout', function (req,res) {
+  res.render('payout.ejs', {
+   user: req.user
+  });
+ })
+
+
+
+ //-----------------end payout---------------------------------------
+
+
+
  // -------postback ---start ----------
  app.get('/postback', function (req, res) {
   let password = req.query.password
