@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link rel="stylesheet" href="static/css/styles.min.css" />
+</head>
+<body>
+<nav
+        class="
+        navbar navbar-dark navbar-expand-lg
+        fixed-top
+        bg-dark
+        navbar-custom
+      "
+>
+    <div class="container">
+        <a class="navbar-brand" href="#">Money monster</a
+        ><button
+                data-bs-toggle="collapse"
+                class="navbar-toggler"
+                data-bs-target="#navbarResponsive"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<center>
+<div class="card" style="margin-top: 90px;width: 30rem;">
+    <div class="card-body">
+       <form action="/payout-details" method="post">
+        <div class="input-group">
+            <span class="input-group-text">paytm id</span>
+            <input id="paytm" name="paytm" class="form-control" aria-label="With textarea"></input>
+        </div>
+        <div class="input-group" style="margin-top: 10px">
+            <span class="input-group-text">UPI id</span>
+            <input id="upi" name="upi" class="form-control" aria-label="With textarea"></input>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px; float: right">Submit</button>
+       </form>
+    </div>
+
+</div>
+</center>
+</body>
+</html>

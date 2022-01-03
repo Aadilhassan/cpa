@@ -202,9 +202,20 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
 
 // -----------------start payout---------------------------------------
- app.get('/payout', function (req,res) {
+ app.get('/payout',isLoggedIn, function (req,res) {
   res.render('payout.ejs', {
    user: req.user
+  });
+ })
+ app.post('/payout-details',isLoggedIn ,  function (req,res) {
+  let upi = req.body.upi;
+  let paytm = req.body.paytm;
+  let sql = "UPDATE users set  paytm =? , upi =?  WHERE id = ?"
+
+  connection.query(sql, [ paytm, upi, req.user.id], function (err, result) {
+   if (err) throw err;
+   console.log("1 record inserted");
+   res.redirect('/payout')
   });
  })
 

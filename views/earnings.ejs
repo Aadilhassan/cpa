@@ -33,8 +33,17 @@
 
        <h2>$<%= user.points %></h2>
         <a href="/payout" class="btn btn-primary">Withdraw</a>
+        <div class="card" style="width: 18rem; float: right">
+            <div class="card-body">
+                <h5 class="card-title">Payout Details</h5>
+                <p>paytm: <%= user.paytm %></p>
+                <p>upi: <%= user.upi %></p>
+                <a href="/payout" class="btn btn-primary">Edit Payment details</a>
+            </div>
+        </div>
     </div>
 </div>
+
 <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>
 </div>
 <div style=" margin-top: 40px; margin-left: 20px"><a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a>
