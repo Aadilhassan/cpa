@@ -49,7 +49,10 @@
 
 <script>
     if(`<%=  user.points %>`== 5 || `<%=  user.points %>` > 5){
-        document.getElementById(pay).innerHTML = `<a  href="/payout">  <button class="btn disabled btn-success my-2 my-sm-0" >Payout</button>  </a>`
+        document.getElementById("pay").innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a>`
+    }else{
+        document.getElementById("pay").innerHTML = `<a  href="/payout">  <button class="btn disabled btn-success my-2 my-sm-0" >Payout</button>  </a>`
+
     }
 </script>
 
