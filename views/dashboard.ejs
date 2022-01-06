@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <link rel="stylesheet"
           href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
@@ -56,30 +58,58 @@
         document.getElementsByClassName('ch').innerHTML = "Paragraph changed!";
     }
 </script>
-<nav class="navbar navbar-dark bg-dark ">
-    <a class="navbar-brand" href="dashboard.ejs">Navbar</a>
+<!--<nav class="navbar navbar-dark bg-dark ">-->
+<!--    <a class="navbar-brand" href="dashboard.ejs">Navbar</a>-->
 
-    <span style="float:right">
-  <a  href="/earnings">  <button class="btn btn-outline-primary " >Earnings: $<%= user.points %> </button>  </a>
- <a  href="/profile">  <button class="btn btn-outline-success my-2 my-sm-0" >Profile</button>  </a>
+<!--    <span style="float:right">-->
+<!--  <a  href="/earnings">  <button class="btn btn-outline-primary " >Earnings: $<%= user.points %> </button>  </a>-->
+<!-- <a  href="/profile">  <button class="btn btn-outline-success my-2 my-sm-0" >Profile</button>  </a>-->
 
-    <a  href="/logout">  <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>  </a>
-</span>
+<!--    <a  href="/logout">  <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>  </a>-->
+<!--</span>-->
 
-    <!--    <a href="/profile"  class="btn btn-success btn-sm aling-left">Profile</a>-->
-    <!--    <a href="/logout"  class="btn btn-danger btn-sm aling-left">Logout</a>-->
-</nav>
-
-
+<!--    &lt;!&ndash;    <a href="/profile"  class="btn btn-success btn-sm aling-left">Profile</a>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <a href="/logout"  class="btn btn-danger btn-sm aling-left">Logout</a>&ndash;&gt;-->
+<!--</nav>-->
 
 
+    <nav
+            class="
+        navbar navbar-dark navbar-expand-lg
+        fixed-top
+        bg-dark
+        navbar-custom
+      "
+
+    >
+        <div class="container">
+            <a class="navbar-brand" href="#">Money monster</a
+            ><button
+                    data-bs-toggle="collapse"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarResponsive"
+            >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.points %> </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item text-danger"><a class="nav-link" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
 
 
 
 
-<h2>user: <%= user.username %> </h2>
+
+<h2 style="margin-top: 60px">user: <%= user.username %> </h2>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script type="text/javascript">

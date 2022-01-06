@@ -14,41 +14,56 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark ">
-    <a class="navbar-brand">Navbar</a>
+<nav
+        class="
+        navbar navbar-dark navbar-expand-lg
+        fixed-top
+        bg-dark
+        navbar-custom
+      "
 
-    <span style="float:right">
-  <a  href="/earnings">  <button class="btn btn-outline-primary " >Earnings: $<%= user.points %> </button>  </a>
- <a  href="/profile">  <button class="btn btn-outline-success my-2 my-sm-0" >Profile</button>  </a>
-
-    <a  href="/logout">  <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>  </a>
-</span>
-
-    <!--    <a href="/profile"  class="btn btn-success btn-sm aling-left">Profile</a>-->
-    <!--    <a href="/logout"  class="btn btn-danger btn-sm aling-left">Logout</a>-->
+>
+    <div class="container">
+        <a class="navbar-brand" href="#">Money monster</a
+        ><button
+                data-bs-toggle="collapse"
+                class="navbar-toggler"
+                data-bs-target="#navbarResponsive"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.points %> </a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                <li class="nav-item text-danger"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
-
 
 <!--// modal start&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 60px">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
             <form method="post" action="/payout-details">
+            <div class="modal-body">
                 <input class="input-group" placeholder="UPI" name="upi" value="<%= user.upi %>">
                 <input class="input-group" placeholder="paytm" name="paytm" value="<%= user.paytm %>">
-            </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

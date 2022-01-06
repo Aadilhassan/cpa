@@ -215,7 +215,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   connection.query(sql, [ paytm, upi, req.user.id], function (err, result) {
    if (err) throw err;
    console.log("1 record inserted");
-   res.redirect('/payout')
+   res.redirect('/earnings')
   });
  })
 
