@@ -40,9 +40,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form method="post" action="/">
-                <input class="input-group" placeholder="UPI">
-                <input class="input-group" placeholder="paytm">
+            <form method="post" action="/payout-details">
+                <input class="input-group" placeholder="UPI" name="upi" value="<%= user.upi %>">
+                <input class="input-group" placeholder="paytm" name="paytm" value="<%= user.paytm %>">
             </form>
             </div>
             <div class="modal-footer">
