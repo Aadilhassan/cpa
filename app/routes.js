@@ -224,6 +224,22 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  //-----------------end payout---------------------------------------
 
 
+//-----------------------start edit profile-----------------------------
+ app.post('/user-details',isLoggedIn ,  function (req,res) {
+  let username = req.body.username;
+  let email = req.body.email;
+  let sql = "UPDATE users set  username =? , email =?  WHERE id = ?"
+
+  connection.query(sql, [ username, email, req.user.id], function (err, result) {
+   if (err) throw err;
+   console.log("1 record inserted");
+   res.redirect('/profile')
+  });
+ })
+
+
+
+//-----------------------End edit profile-----------------------------
 
  // -------postback ---start ----------
  app.get('/postback', function (req, res) {
