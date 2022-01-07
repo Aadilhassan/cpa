@@ -244,7 +244,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  // -------postback ---start ----------
  app.get('/postback', function (req, res) {
   let password = req.query.password
-  let virtual_currency = req.query.virtual_currency
+  let virtual_currency = req.query.payout/2
   let subid = req.query.subid
   let mail = req.query.email
   let pass = 7091
@@ -262,13 +262,13 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   // ------Getting data for history logs--------
  let his = "INSERT INTO logs (id, points) VALUES ?";
   let values =[
-      [req.query.subid, req.query.virtual_currency]
+      [req.query.subid, req.query.payout/2]
   ];
   connection.query(his,  [values], function (err, result) {
    console.log("Record added to the logs !!");
    console.log(result);
 
-   res.send(` virtual_currency "money added"`);
+   res.send(` virtual_currency "money added" ${virtual_currency}`);
   });
 
   // -----ending history logs -----------

@@ -51,7 +51,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Payout method</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" action="/payout-details">
@@ -71,12 +71,19 @@
 <!--// modal ends&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 <div class="card" >
     <h1 class="card-header">Current Balance</h1>
-    <div class="card-body"> <div class="row">
+    <div class="card-body">
+        <h1> <div class="card-title"> Earnings/payout</div></h1>
+
+        <div class="row">
             <div class="col">
 <div class="card" >
        <h2>$<%= user.points %></h2>
         <a href="/payout" class="btn btn-primary">Withdraw</a>
 </div>
+                <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>
+                </div>
+                <div id='pay' style="float: left; margin-top: 40px; margin-left: 20px" >
+                </div>
             </div>
             <div class="col">
         <div class="card" >
@@ -87,15 +94,14 @@
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Payment details</button>
             </div>
         </div>
+
+
             </div>
         </div>
     </div>
 </div>
 
-<div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>
-</div>
-<div id='pay' style="float: left; margin-top: 40px; margin-left: 20px" >
-</div>
+
 <script>
     function fpp() {
         // document.getElementById('pay').innerHTML = "hello";
@@ -113,7 +119,6 @@
 
 
 
-<div style="float: right; margin-top: 40px; margin-right: 20px"><a  href="/dashboard">  <button class="btn btn-outline-success my-2 my-sm-0" >Back to Dashboard</button>  </a>
-</div>
+
 </body>
 </html>
