@@ -14,7 +14,7 @@
 
  </style>
 </head>
-<div>
+<body>
 <nav
         class="
         navbar navbar-dark navbar-expand-lg
@@ -44,11 +44,30 @@
   </div>
  </div>
 </nav>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 60px">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   </div>
+   <form method="post" action="/user-details">
+    <div class="modal-body">
+     <input class="input-group" placeholder="username" style="margin-bottom: 10px" name="username" value="<%= user.username %>">
+     <input class="input-group" placeholder="email" name="email" value="<%= user.email %>">
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>
 
 
 
-
-<div class="card">
+<div class="card" style="margin-top: 60px">
  <div class="card-header">
   <h1>Your Profile</h1>
  </div>
@@ -58,13 +77,11 @@
   <h5 class="card-title">User: <%= user.email %></h5>
   <h5 class="card-title">Balance: $<%= user.points %></h5>
   <div style="float: right">
-  <a href="/edit-profile" class="btn btn-primary ">Edit Profile</a></div>
+  <a href="/edit-profile" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</a></div>
  </div>
 </div>
-</div>
-<div style="float: right; margin-top: 40px; margin-right: 20px"><a  href="/dashboard">  <button class="btn btn-outline-success my-2 my-sm-0" >Back to Dashboard</button>  </a>
 
-</div>
+
 
 </body>
 </html>
