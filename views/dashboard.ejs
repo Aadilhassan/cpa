@@ -129,7 +129,7 @@
                         '<h4>'+offer.title+ '</h4>' +
                         '<span style="float: right"> $'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
                         '</div>' +
-                        '</a>'  +'<input class="input-group visually-hidden" value='+offer.link+' id="myInput">' + '<button id="bt myTooltip" class="btn btn-success" style="float: left; max-width: 200px" data-copy="'+offer.link+'" href="'+offer.link+ '" onclick="copy()"  value="'+offer.title+ '">Get link</button>'
+                        '</a>'  +'<input class="input-group visually-hidden" value='+offer.link+' id="myInput">' + '<button id="bt" class="btn btn-success" style="float: left; max-width: 200px" data-copy="'+offer.link+'" href="'+offer.link+ '" onclick="copy()"  value="'+offer.title+ '">Get link</button>'
                 ;
                 });
                 $(".offer-list").html(offers);
@@ -155,6 +155,7 @@
             </div>
 <!--        </div>-->
     </div>
+
 </div>
 
 
@@ -178,7 +179,7 @@
         alert("Copied the text: " + copyText.value);
         // let tooltip = document.getElementById("myTooltip");
         // tooltip.innerHTML = "Copied: " + copyText;
-let cop =  document.getElementById("");
+let cop =  document.getElementById("URL copied");
 
     }
 
