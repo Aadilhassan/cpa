@@ -112,6 +112,7 @@
 
 
 <h2 style="margin-top: 60px">user: <%= user.username %> </h2>
+
     <div id="al" ></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -132,7 +133,7 @@
                         '<h4>'+offer.title+ '</h4>' +
                         '<span style="float: right"> $'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
                         '</div>' +
-                        '</a>'  +'<input class="input-group visually-hidden" value='+offer.link+' id="myInput">' + '<button id="bt" class="btn btn-success" data-bs-toggle="tooltip"  style="float: left; max-width: 200px"  onclick="copy()"  >Get link</button>'
+                        '</a>'  +'<input class="input-group visually-hidden" value='+offer.link+' id="myInput">' + '<button id="bt" class="btn btn-success" data-bs-toggle="tooltip"  data-bs-placement="right" style="float: left; max-width: 200px"  onclick="copy()"  >Get link</button>'
                 ;
                 });
                 $(".offer-list").html(offers);
@@ -190,8 +191,7 @@ cop.innerHTML = " <alert>URL copied</alert>"
     }
 
     function tip() {
-        document.getElementById("bt").setAttribute("title", "url copied");
- console.log("copied")
+        document.getElementById("bt").innerHTML = "url copied"
     }
 </script>
 <script>
