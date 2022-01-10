@@ -54,22 +54,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card" style="padding: 10px">
+
+                    <form action="/payout" method="post">
                     <h3>Enter amount</h3>
        <input class="input-group" type="number" name="amount" placeholder="amount">
 
 
               <h3>Payout method</h3>
 
-                <label class="radio-inline"><input type="radio" name="optradio" value="<%= user.upi %>">UPI</label>
-                <label class="radio-inline"><input type="radio" name="optradio" value="<%= user.paytm %>">Paytm</label>
-                    </div>
+                <label class="radio-inline"><input type="radio" name="method" value="UPI=  <%= user.upi %>">UPI</label>
+                <label class="radio-inline"><input type="radio" name="method" value="paytm= <%= user.paytm %>">Paytm</label>
 
-            </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Request payout</button>
+                <button type="submit" class="btn btn-primary">Request payout</button>
+
             </div>
+                </form>
+            </div>
+        </div>
         </div>
     </div>
 </div>

@@ -202,10 +202,21 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
 
 // -----------------start payout---------------------------------------
- app.get('/payout',isLoggedIn, function (req,res) {
-  res.render('payout.ejs', {
-   user: req.user
-  });
+ app.post('/payout',isLoggedIn, function (req,res) {
+ let amount = req.body.amount
+  console.log(req.body.method)
+  console.log(req.user.id)
+  let method = req.body.method
+  let id = req.user.id
+ let email = req.user.email
+  let sql = "INSERT INTO payouts (points, email , method , id) VALUES  ('" + amount + "','" + email + "','" + method + "', '" + id +"')";
+
+  connection.query(sql, function (err, result) {
+   if (err) throw err;
+   console.log("1 record inserted");
+   res.redirect('/earnings')
+  })
+
  })
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
   let upi = req.body.upi;
