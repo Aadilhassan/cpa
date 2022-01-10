@@ -43,7 +43,40 @@
         </div>
     </div>
 </nav>
+// payout modal starts
 
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Payout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card" style="padding: 10px">
+                    <h3>Enter amount</h3>
+       <input class="input-group" type="number" name="amount" placeholder="amount">
+
+
+              <h3>Payout method</h3>
+
+                <label class="radio-inline"><input type="radio" name="optradio" value="<%= user.upi %>">UPI</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="<%= user.paytm %>">Paytm</label>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Request payout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+// payout modal eds
 <!--// modal start&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
 
@@ -69,7 +102,7 @@
 </div>
 
 <!--// modal ends&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<div class="card" >
+<div class="card" style="margin-top: 60px" >
     <h1 class="card-header">Current Balance</h1>
     <div class="card-body">
         <h1> <div class="card-title"> Earnings/payout</div></h1>
@@ -78,7 +111,9 @@
             <div class="col">
 <div class="card" >
        <h2>$<%= user.points %></h2>
-        <a href="/payout" class="btn btn-primary">Withdraw</a>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Withdrawl
+    </button>
 </div>
                 <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>
                 </div>
