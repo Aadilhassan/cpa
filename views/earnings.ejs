@@ -157,8 +157,16 @@
 
 </script>
 
+<div class="card" style="padding: 20px">
+    <div class="card-body">
+        <h5 class="card-title">Requested Payout</h5>
+        <p>Amount: <%= payout.points %></p>
+        <p>Method: <%= payout.method %></p>
+        <p>Time: <%= payout.time %></p>
+        <p>Status: <%= payout.status %></p>
+          </div>
+</div>
 
-
-
+<%=  payout.method %>
 </body>
 </html>

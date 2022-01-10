@@ -126,11 +126,22 @@ module.exports = function(app, passport) {
    user: req.user
   });
  });
+
+
  app.get('/earnings', isLoggedIn, function (req, res) {
-  res.render('earnings.ejs', {
-   user: req.user
-  });
+  connection.query(`SELECT * FROM payouts WHERE id = ${req.user.id} && status = 0`, function (err, rows) {
+   console.log(rows[0])
+   console.log(rows[0].method)
+   res.render('earnings.ejs', {
+    payout :rows[0],
+    user: req.user
+   });
+  })
+
+
  });
+
+
  app.post('/verify', isLoggedIn ,function(req, res){
   const senderMail = "aadilreact@yahoo.com";
   let transporter = nodemailer.createTransport({
@@ -208,7 +219,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   console.log(req.user.id)
   let method = req.body.method
   let id = req.user.id
- let email = req.user.email
+  let email = req.user.email
   let sql = "INSERT INTO payouts (points, email , method , id) VALUES  ('" + amount + "','" + email + "','" + method + "', '" + id +"')";
 
   connection.query(sql, function (err, result) {
@@ -216,6 +227,8 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
    console.log("1 record inserted");
    res.redirect('/earnings')
   })
+
+
 
  })
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
