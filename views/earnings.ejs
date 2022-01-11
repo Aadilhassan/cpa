@@ -147,7 +147,11 @@
         // document.getElementById('pay').innerHTML = "hello";
         if(`<%=  user.points %>`== 5 || `<%=  user.points %>` > 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a> `;
-        }else if (`<%=  user.points %>` < 5){
+        } else if(`<%=  payout.status %>` == 0){
+            document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
+
+        }
+        else if (`<%=  user.points %>` < 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
 
         };
