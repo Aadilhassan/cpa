@@ -38,7 +38,7 @@
                 <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.points %> </a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
-                <li class="nav-item text-danger"><a class="nav-link" href="/logout">Logout</a></li>
+                <li class="nav-item text-danger"><a class="nav-link btn btn-outline-danger text-danger" href="/logout">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -117,9 +117,19 @@
 <div class="card" >
     <div class="card-body">
        <h2 class="card-title">$<%= user.points %></h2>
-    <button type="button" style="width: 120px" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button" style="width: 120px" class="btn btn-primary"   <% if(!payout){ %>
+
+        <% } else{ %>
+         disabled
+        <% } %>   data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
         Withdrawl
-    </button>
+    </button> <% if(!payout){ %>
+
+        <% } else{ %>
+        <br>
+          <small class="text-danger"> you can't Request payout because another payout is active.</small>
+        <% } %>
 
 <!--                <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>-->
 <!--                </div>-->
@@ -128,7 +138,7 @@
 </div>
             </div>
             <div class="col">
-        <div class="card" >
+        <div class="card" style="margin-top: 40px" >
             <div class="card-body">
                 <h5 class="card-title">Payout Details</h5>
                 <p>paytm: <%= user.paytm %></p>
