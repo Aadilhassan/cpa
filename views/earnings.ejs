@@ -115,15 +115,17 @@
         <div class="row">
             <div class="col">
 <div class="card" >
-       <h2>$<%= user.points %></h2>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <div class="card-body">
+       <h2 class="card-title">$<%= user.points %></h2>
+    <button type="button" style="width: 120px" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Withdrawl
     </button>
+
+<!--                <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>-->
+<!--                </div>-->
+                </div>
+            </div>
 </div>
-                <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>
-                </div>
-                <div id='pay' style="float: left; margin-top: 40px; margin-left: 20px" >
-                </div>
             </div>
             <div class="col">
         <div class="card" >
@@ -147,7 +149,11 @@
         // document.getElementById('pay').innerHTML = "hello";
         if(`<%=  user.points %>`== 5 || `<%=  user.points %>` > 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a> `;
-        } else if(`<%=  payout.status %>` == 0){
+        } else if(`<% if(!payout){ %>
+  0
+ <% } else{ %>
+   <%=  payout.status %>
+<% } %>` == `0`){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
 
         }
@@ -164,13 +170,29 @@
 <div class="card" style="padding: 20px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
-        <p>Amount: <%= payout.points %></p>
-        <p>Method: <%= payout.method %></p>
-        <p>Time: <%= payout.time %></p>
-        <p>Status: <%= payout.status %></p>
+        <p><% if(payout){ %>
+                Amount:   <%= payout.points %>
+        <% } else{ %>
+
+        <% } %>    </p>
+        <p> <% if(payout){ %>
+                Method:  <%= payout.method %>
+            <% } else{ %>
+
+            <% } %>  </p>
+        <p> <% if(payout){ %>
+                Time:   <%= payout.time %>
+            <% } else{ %>
+
+            <% } %>  </p>
+        <p> <% if(payout){ %>
+                Status:  <%= payout.status %>
+            <% } else{ %>
+
+            <% } %>  </p>
           </div>
 </div>
 
-<%=  payout.method %>
+
 </body>
 </html>
