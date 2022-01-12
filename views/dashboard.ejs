@@ -111,7 +111,7 @@
 
 
 
-<h2 style="margin-top: 60px">user: <%= user.username %> </h2>
+<!--<h2 style="margin-top: 60px">user: <%= user.username %> </h2>-->
 
     <div id="al" ></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -133,7 +133,7 @@
                         '<h4>'+offer.title+ '</h4>' +
                         '<span style="float: right"> ₹'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
                         '</div>' +
-                        '</a>'  +'<input class="input-group copie " value='+offer.link+' id="myInput">'
+                        '</a>'  +'<input class="form-control" type="url" value='+offer.link+' id="myInput">'
 
 
                 ;
@@ -144,9 +144,9 @@
     });
 </script>
     <script async src="https://static.addtoany.com/menu/page.js"></script>
-<div class="card">
+<div class="card" style="margin-top: 60px">
     <div class="card-header">
-        Dashboard
+        Dashboard <span style="float: right">user: <%= user.username %> </span>
     </div>
     <div class="card-body">
 <!--        <h5 class="card-title">Offers list</h5>-->
