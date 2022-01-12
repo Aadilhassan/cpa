@@ -11,6 +11,15 @@
           href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
 
+        .css-serial {
+            counter-reset: serial-number;  /* Set the serial number counter to 0 */
+        }
+
+        .css-serial td:first-child:before {
+            counter-increment: serial-number;  /* Increment the serial number counter */
+            content: counter(serial-number);  /* Display the counter */
+        }
+
     </style>
 </head>
 <body>
@@ -203,6 +212,28 @@
           </div>
 </div>
 
-
+<div class="card" style="margin-top: 20px">
+    <div class="card-header">
+        History
+    </div>
+<table class="table css-serial" >
+    <thead class="thead-dark">
+    <tr>
+        <th>sr.no</th>
+        <th>money</th>
+        <th>time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% logs.forEach(function (log) { %>
+        <tr>
+            <td></td>
+            <td><%= log.points %></td>
+            <td><%= log.time %></td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+</div>
 </body>
 </html>
