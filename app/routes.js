@@ -143,7 +143,7 @@ module.exports = function(app, passport) {
    connection.query(sql, req.user.id, function (err, result) {
     console.log(result)
     res.render('earnings.ejs', {
-     // logs: result,
+     logs: result,
      payout: rows[0],
      user: req.user
     });
