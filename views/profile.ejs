@@ -37,7 +37,7 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
    <ul class="navbar-nav ms-auto">
     <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-    <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.points %> </a></li>
+    <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.amount %> </a></li>
     <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
     <li class="nav-item text-danger"><a class="nav-link btn btn-outline-danger text-danger" href="/logout">Logout</a></li>
    </ul>
@@ -73,9 +73,9 @@
  </div>
  <div class="card-body">
   <h5 class="card-title">User: <%= user.username %></h5>
-  <h5 class="card-title">User ID: <%= user.id %></h5>
+  <h5 class="card-title">User ID: <%= user.userid %></h5>
   <h5 class="card-title">User: <%= user.email %></h5>
-  <h5 class="card-title">Balance: $<%= user.points %></h5>
+  <h5 class="card-title">Balance: $<%= user.amount %></h5>
   <div style="float: right">
   <a href="/edit-profile" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</a></div>
  </div>

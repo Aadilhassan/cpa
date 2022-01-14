@@ -97,7 +97,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.points %> </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/earnings">earnings: $<%= user.amount %> </a></li>
                     <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
                     <li class="nav-item text-danger"><a class="nav-link btn btn-outline-danger text-danger" href="/logout">Logout</a></li>
                 </ul>
@@ -118,7 +118,7 @@
 
 <script type="text/javascript">
     $(function() {
-        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.id %>&geoip=user&ua=user&format=JSONP&callback=?",
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&geoip=user&ua=user&format=JSONP&callback=?",
             function(data)
             {
 
@@ -146,7 +146,7 @@
     <script async src="https://static.addtoany.com/menu/page.js"></script>
 <div class="card" style="margin-top: 60px">
     <div class="card-header">
-        Dashboard <span style="float: right">user: <%= user.username %> </span>
+        Dashboard <span style="float: right">user: <%= user.name %> </span>
     </div>
     <div class="card-body">
 <!--        <h5 class="card-title">Offers list</h5>-->

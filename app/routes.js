@@ -130,26 +130,26 @@ module.exports = function(app, passport) {
 
  app.get('/earnings', isLoggedIn, function (req, res) {
 
-
-  connection.query(`SELECT * FROM payouts WHERE id = ${req.user.id} && status = 0`, function (err, rows) {
+  let pql = "SELECT * FROM payoutlogs WHERE userid = 1 && status = 0"
+  connection.query(pql, function (err, rows) {
+   console.log(rows)
    if (!rows[0]) {
     console.log("There are no active payouts")
    } else {
     console.log(rows[0])
     console.log(rows[0].method)
    }
-   let sql = "SELECT * FROM logs Where id = ?"
+   let sql = "SELECT * FROM payinlogs Where userid = ?"
 
-   connection.query(sql, req.user.id, function (err, result) {
+   connection.query(sql, req.user.userid, function (err, result) {
     console.log(result)
     res.render('earnings.ejs', {
      logs: result,
-     payout: rows[0],
+     payoutlogs: rows[0],
      user: req.user
     });
    })
   })
-
 
  });
 
