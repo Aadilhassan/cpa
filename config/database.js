@@ -1,9 +1,9 @@
 module.exports = {
  'connection':{
-  'host':'db4free.net',
-  'user':'aadilhassan',
-  'password': '7091487474'
+  'host':'testnyt.mysql.database.azure.com',
+  'user':'aadil',
+  'password': 'aahan@7091487474'
  },
- 'database':'data_aadil',
+ 'database':'data',
  'user_table':'users'
 }

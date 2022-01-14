@@ -60,7 +60,7 @@ module.exports = function(app, passport) {
 
 
 
-     let sql = "INSERT INTO users (username, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+     let sql = "INSERT INTO users (name, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
 
      connection.query(sql, function (err, result) {
       if (err) throw err;
