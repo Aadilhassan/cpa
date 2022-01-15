@@ -2,8 +2,8 @@
  "name": "node-loginregister",
  "main": "server.js",
  "scripts": {
-  "start": "node ./server",
-  "dev": "nodemon ./server"
+  "start": "node ./index",
+  "dev": "nodemon ./index"
  },
  "dependencies": {
   "bcrypt": "^5.0.1",
