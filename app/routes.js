@@ -145,7 +145,7 @@ module.exports = function(app, passport) {
     console.log(result)
     res.render('earnings.ejs', {
      logs: result,
-     payoutlogs: rows,
+     payoutlogs: rows[0],
      user: req.user
     });
    })
@@ -285,13 +285,13 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   let password = req.query.password
   let userid = req.query.subid
   // let mail = req.query.email
-  let amount = req.query.payout/2
+  let money = req.query.payout/2
   let pass = 7091
 
 
- let sql = "UPDATE users set amount= amount+? WHERE id = ?";
+ let sql = "UPDATE users set amount= amount+? WHERE userid = ?";
 
- connection.query(sql, [amount, userid], function (err, result) {
+ connection.query(sql, [money, userid], function (err, result) {
   console.log("Record Updated!!");
   console.log(result);
   // res.send(` virtual_currency "money added"`);
@@ -307,7 +307,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
    console.log("Record added to the logs !!");
    console.log(result);
 
-   res.send(` virtual_currency "money added" ${req.query.payout/2}`);
+   res.send(` virtual_currency "money added" ${req.query.payout/2} ${result}`);
   });
 
   // -----ending history logs -----------

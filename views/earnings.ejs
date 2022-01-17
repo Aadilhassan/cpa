@@ -168,12 +168,12 @@
 <script>
     function fpp() {
         // document.getElementById('pay').innerHTML = "hello";
-        if(`<%=  user.points %>`== 5 || `<%=  user.points %>` > 5){
+        if(`<%=  user.amount %>`== 5 || `<%=  user.amount %>` > 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a> `;
         } else if(`<% if(!payoutlogs){ %>
   0
  <% } else{ %>
-   <%=  payoutlogs.status %>
+   <%=  payoutlogs.code %>
 <% } %>` == `0`){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
 
@@ -187,7 +187,7 @@
 
 
 </script>
-<%= payoutlogs.method %>
+
 <div class="card" style="padding: 20px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
@@ -231,7 +231,7 @@ null
         <tr>
             <td></td>
             <td><%= log.amount %></td>
-            <td><%= log.time %></td>
+            <td><%= log.logtime %></td>
         </tr>
     <% }) %>
     </tbody>
