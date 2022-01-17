@@ -133,7 +133,7 @@
         <% } %>   data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 
         Withdrawl
-    </button> <% if(!payout){ %>
+    </button> <% if(!payoutlogs){ %>
 
         <% } else{ %>
         <br>
@@ -168,10 +168,10 @@
         // document.getElementById('pay').innerHTML = "hello";
         if(`<%=  user.points %>`== 5 || `<%=  user.points %>` > 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a> `;
-        } else if(`<% if(!payout){ %>
+        } else if(`<% if(!payoutlogs){ %>
   0
  <% } else{ %>
-   <%=  payout.status %>
+   <%=  payoutlogs.status %>
 <% } %>` == `0`){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
 
@@ -185,27 +185,27 @@
 
 
 </script>
-
+<%= payoutlogs.method %>
 <div class="card" style="padding: 20px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
-        <p><% if(payout){ %>
-                Amount:   <%= payout.points %>
+        <p><% if(payoutlogs){ %>
+                Amount:   <%= payoutlogs.amount %>
         <% } else{ %>
-
+null
         <% } %>    </p>
-        <p> <% if(payout){ %>
-                Method:  <%= payout.method %>
+        <p> <% if(payoutlogs){ %>
+                Method:  <%= payoutlogs.method %>
             <% } else{ %>
 
             <% } %>  </p>
-        <p> <% if(payout){ %>
-                Time:   <%= payout.time %>
+        <p> <% if(payoutlogs){ %>
+                Time:   <%= payoutlogs.time %>
             <% } else{ %>
 
             <% } %>  </p>
-        <p> <% if(payout){ %>
-                Status:  <%= payout.status %>
+        <p> <% if(payoutlogs){ %>
+                Status:  <%= payoutlogs.code %>
             <% } else{ %>
 
             <% } %>  </p>

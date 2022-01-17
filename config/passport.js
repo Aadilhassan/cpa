@@ -29,7 +29,7 @@ module.exports = function(passport) {
       (req, username, password, done) => {
    connection.query("SELECT * FROM users WHERE email = ? ", [username],
    function(err, rows){
-    console.log(rows[0])
+    console.log(rows)
 
     if(err)
      return done(err);

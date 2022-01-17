@@ -130,10 +130,12 @@ module.exports = function(app, passport) {
 
  app.get('/earnings', isLoggedIn, function (req, res) {
 
-  let pql = "SELECT * FROM payoutlogs WHERE userid = 1 && status = 0"
+  let pql = "SELECT * FROM payoutlogs WHERE userid = 1 && code = 0"
   connection.query(pql, function (err, rows) {
+   console.log('hellllllllllllllllllllllll')
    console.log(rows)
-   if (!rows[0]) {
+   console.log("ppppppppppppppppppppppppppppp")
+   if (!rows) {
     console.log("There are no active payouts")
    } else {
     console.log(rows[0])
@@ -145,7 +147,7 @@ module.exports = function(app, passport) {
     console.log(result)
     res.render('earnings.ejs', {
      logs: result,
-     payoutlogs: rows[0],
+     payoutlogs: rows,
      user: req.user
     });
    })
@@ -230,9 +232,9 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   console.log(req.body.method)
   console.log(req.user.id)
   let method = req.body.method
-  let id = req.user.id
+  let id = req.user.userid
   let email = req.user.email
-  let sql = "INSERT INTO payouts (points, email , method , id) VALUES  ('" + amount + "','" + email + "','" + method + "', '" + id +"')";
+  let sql = "INSERT INTO payoutlogs (amount, email , method , userid) VALUES  ('" + amount + "','" + email + "','" + method + "', '" + id +"')";
 
   connection.query(sql, function (err, result) {
    if (err) throw err;
@@ -246,9 +248,9 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
   let upi = req.body.upi;
   let paytm = req.body.paytm;
-  let sql = "UPDATE users set  paytm =? , upi =?  WHERE id = ?"
+  let sql = "UPDATE users set  paytm =? , upi =?  WHERE userid = ?"
 
-  connection.query(sql, [ paytm, upi, req.user.id], function (err, result) {
+  connection.query(sql, [ paytm, upi, req.user.userid], function (err, result) {
    if (err) throw err;
    console.log("1 record inserted");
    res.redirect('/earnings')
@@ -258,6 +260,9 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
 
  //-----------------end payout---------------------------------------
+
+
+
 
 
 //-----------------------start edit profile-----------------------------
