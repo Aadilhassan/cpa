@@ -127,7 +127,7 @@
     <div class="card-body">
        <h2 class="card-title">$<%= user.amount %></h2>
     <button type="button" style="width: 120px" class="btn btn-primary"
-            <% if(!payoutlogs){ %>
+            <% if(user.amount == 5 || user.amount > 5){ %>
 
         <% } else{ %>
          disabled
@@ -135,11 +135,11 @@
             data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 
         Withdrawl
-    </button> <% if(!payoutlogs){ %>
+    </button> <% if(user.amount == 5 || user.amount > 5){ %>
 
         <% } else{ %>
         <br>
-          <small class="text-danger"> you can't  Request payout because another payout is active.</small>
+          <small class="text-warning"> you can't  Request payout because you don't have enough money. minimum amount withdrawl is $5</small>
         <% } %>
 
 <!--                <div style="float: left; margin-top: 40px; margin-left: 20px"><a  href="/data?id=<%= user.id %>">  <button class="btn btn-outline-success my-2 my-sm-0" >View History</button>  </a>-->
@@ -168,20 +168,9 @@
 <script>
     function fpp() {
         // document.getElementById('pay').innerHTML = "hello";
-        if(`<%=  user.amount %>`== 5 || `<%=  user.amount %>` > 5){
+        if(user.amount == 5 ||  user.amount  > 5){
             document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" >Payout</button>  </a> `;
-        } else if(`<% if(!payoutlogs){ %>
-  0
- <% } else{ %>
-   <%=  payoutlogs.code %>
-<% } %>` == `0`){
-            document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
-
         }
-        else if (`<%=  user.points %>` < 5){
-            document.getElementById('pay').innerHTML = `<a  href="/payout">  <button class="btn btn-success my-2 my-sm-0" disabled>Payout</button>  </a>`;
-
-        };
     };
     fpp();
 
@@ -191,26 +180,33 @@
 <div class="card" style="padding: 20px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
-        <p><% if(payoutlogs){ %>
-                Amount:   <%= payoutlogs.amount %>
-        <% } else{ %>
-null
-        <% } %>    </p>
-        <p> <% if(payoutlogs){ %>
-                Method:  <%= payoutlogs.method %>
-            <% } else{ %>
+        <% payoutlogs.forEach(function (payoutlog) { %>
+            <tr>
+                <td></td>
+                <td><%= payoutlog.amount %></td>
+                <td><%= payoutlog.logtime %></td>
+            </tr>
+        <% }) %>
+<!--        <p><% if(payoutlogs){ %>-->
+<!--                Amount:   <%= payoutlogs.amount %>-->
+<!--        <% } else{ %>-->
+<!--null-->
+<!--        <% } %>    </p>-->
+<!--        <p> <% if(payoutlogs){ %>-->
+<!--                Method:  <%= payoutlogs.method %>-->
+<!--            <% } else{ %>-->
 
-            <% } %>  </p>
-        <p> <% if(payoutlogs){ %>
-                Time:   <%= payoutlogs.logtime %>
-            <% } else{ %>
+<!--            <% } %>  </p>-->
+<!--        <p> <% if(payoutlogs){ %>-->
+<!--                Time:   <%= payoutlogs.logtime %>-->
+<!--            <% } else{ %>-->
 
-            <% } %>  </p>
-        <p> <% if(payoutlogs){ %>
-                Status:  <%= payoutlogs.code %>
-            <% } else{ %>
+<!--            <% } %>  </p>-->
+<!--        <p> <% if(payoutlogs){ %>-->
+<!--                Status:  <%= payoutlogs.code %>-->
+<!--            <% } else{ %>-->
 
-            <% } %>  </p>
+<!--            <% } %>  </p>-->
           </div>
 </div>
 
