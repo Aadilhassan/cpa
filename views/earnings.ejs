@@ -19,7 +19,14 @@
             counter-increment: serial-number;  /* Increment the serial number counter */
             content: counter(serial-number);  /* Display the counter */
         }
-
+        .my-custom-scrollbar {
+            position: relative;
+            height: 200px;
+            overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +72,7 @@
             <div class="modal-body">
 
                     <form action="/payout" method="post">
+
                     <h3>Enter amount</h3>
        <input class="input-group" type="number" name="amount" placeholder="amount">
 
@@ -177,16 +185,17 @@
 
 </script>
 
-<div class="card" style="padding: 20px">
+<div class="card" style="padding: 5px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
-        <table class="table css-serial table table-striped table-hover" >
+<!--        <div class="table-wrapper-scroll-y my-custom-scrollbar">-->
+        <table class="table css-serial  table-striped table-hover" >
             <thead class="thead-dark">
             <tr>
                 <th>sr.no</th>
                 <th>money</th>
-                <th>time</th>
-                <th>status</th>
+
+
                 <th>Method</th>
             </tr>
             </thead>
@@ -195,37 +204,16 @@
             <tr>
                 <td></td>
                 <td><%= payoutlog.amount %></td>
-                <td><%= payoutlog.logtime.substring(0, 5) %></td>
-                <td><%= payoutlog.code %></td>
+
+
                 <td><%= payoutlog.method %></td>
             </tr>
 
         <% }) %>
         </tbody>
         </table>
-<!--        <p><% if(payoutlogs){ %>-->
-<!--                Amount:   <%= payoutlogs.amount %>-->
-<!--        <% } else{ %>-->
-<!--null-->
-<!--        <% } %>    </p>-->
-<!--        <p> <% if(payoutlogs){ %>-->
-<!--                Method:  <%= payoutlogs.method %>-->
-<!--            <% } else{ %>-->
-
-<!--            <% } %>  </p>-->
-<!--        <p> <% if(payoutlogs){ %>-->
-<!--                Time:   <%= payoutlogs.logtime %>-->
-<!--            <% } else{ %>-->
-
-<!--            <% } %>  </p>-->
-<!--        <p> <% if(payoutlogs){ %>-->
-<!--                Status:  <%= payoutlogs.code %>-->
-<!--            <% } else{ %>-->
-
-<!--            <% } %>  </p>-->
-          </div>
 </div>
-
+</div>
 <div class="card" style="margin-top: 20px">
     <div class="card-header">
         History

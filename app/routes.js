@@ -146,7 +146,7 @@ module.exports = function(app, passport) {
     res.render('earnings.ejs', {
      logs: result,
      payoutlogs: rows,
-     user: req.user
+     user: req.user,
     });
    })
   })
@@ -234,6 +234,11 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   let email = req.user.email
   let sql = "INSERT INTO payoutlogs (amount, email , method , userid) VALUES  ('" + withdrawl_amount + "','" + email + "','" + method + "', '" + id +"')";
 
+if(withdrawl_amount > req.user.amount){
+
+ res.send(`you can not withdrawl $ ${withdrawl_amount} because you only have $ ${req.user.amount}`)
+} else {
+
 
 
   let pql = `UPDATE users SET amount = amount - ? where userid  = ?   `
@@ -249,7 +254,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
    res.redirect('/earnings')
   })
 
-
+}
  })
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
   let upi = req.body.upi;

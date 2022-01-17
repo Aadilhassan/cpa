@@ -126,12 +126,12 @@
                 $.each(data.offers, function(o, offer)
 
                 {
-                    let  mon = Math.floor(offer.amount*70/2 * 100) / 100
+                    let  mon = Math.floor(offer.amount/2 * 100) / 100
                     offers += '' +
                         '<a href="' + offer.link + '" class="list-group-item" style="margin-bottom: 10px; margin-top: 40px" xmlns="http://www.w3.org/1999/html">'
                         +
                         '<h4>'+offer.title+ '</h4>' +
-                        '<span style="float: right"> ₹'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
+                        '<span style="float: right"> $'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
                         '</div>' +
                         '</a>'  +'<input class="form-control" type="url" value='+offer.link+' id="myInput">'
 
