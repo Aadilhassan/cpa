@@ -132,14 +132,12 @@ module.exports = function(app, passport) {
 
   let pql = "SELECT * FROM payoutlogs WHERE userid = 1 && code = 0"
   connection.query(pql, function (err, rows) {
-   console.log('hellllllllllllllllllllllll')
    console.log(rows)
-   console.log("ppppppppppppppppppppppppppppp")
-   if (!rows) {
+   if (rows.length == 0) {
     console.log("There are no active payouts")
    } else {
     console.log(rows[0])
-    console.log(rows[0].method)
+
    }
    let sql = "SELECT * FROM payinlogs Where userid = ?"
 
@@ -285,15 +283,15 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  // -------postback ---start ----------
  app.get('/postback', function (req, res) {
   let password = req.query.password
-  let virtual_currency = req.query.payout/2
-  let subid = req.query.subid
-  let mail = req.query.email
+  let userid = req.query.subid
+  // let mail = req.query.email
+  let amount = req.query.payout/2
   let pass = 7091
 
 
- let sql = "UPDATE users set points= points+? WHERE id = ?";
+ let sql = "UPDATE users set amount= amount+? WHERE id = ?";
 
- connection.query(sql, [virtual_currency, subid], function (err, result) {
+ connection.query(sql, [amount, userid], function (err, result) {
   console.log("Record Updated!!");
   console.log(result);
   // res.send(` virtual_currency "money added"`);
@@ -301,7 +299,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  });
 
   // ------Getting data for history logs--------
- let his = "INSERT INTO logs (id, points) VALUES ?";
+ let his = "INSERT INTO payinlogs (userid, amount) VALUES ?";
   let values =[
       [req.query.subid, req.query.payout/2]
   ];
@@ -309,7 +307,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
    console.log("Record added to the logs !!");
    console.log(result);
 
-   res.send(` virtual_currency "money added" ${virtual_currency}`);
+   res.send(` virtual_currency "money added" ${req.query.payout/2}`);
   });
 
   // -----ending history logs -----------

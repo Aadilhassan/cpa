@@ -126,11 +126,13 @@
 <div class="card" >
     <div class="card-body">
        <h2 class="card-title">$<%= user.amount %></h2>
-    <button type="button" style="width: 120px" class="btn btn-primary"   <% if(!payoutlogs){ %>
+    <button type="button" style="width: 120px" class="btn btn-primary"
+            <% if(!payoutlogs){ %>
 
         <% } else{ %>
          disabled
-        <% } %>   data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <% } %>
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 
         Withdrawl
     </button> <% if(!payoutlogs){ %>
@@ -228,7 +230,7 @@ null
     <% logs.forEach(function (log) { %>
         <tr>
             <td></td>
-            <td><%= log.points %></td>
+            <td><%= log.amount %></td>
             <td><%= log.time %></td>
         </tr>
     <% }) %>
