@@ -180,13 +180,29 @@
 <div class="card" style="padding: 20px">
     <div class="card-body">
         <h5 class="card-title">Requested Payout</h5>
+        <table class="table css-serial table table-striped table-hover" >
+            <thead class="thead-dark">
+            <tr>
+                <th>sr.no</th>
+                <th>money</th>
+                <th>time</th>
+                <th>status</th>
+                <th>Method</th>
+            </tr>
+            </thead>
+        <tbody>
         <% payoutlogs.forEach(function (payoutlog) { %>
             <tr>
                 <td></td>
                 <td><%= payoutlog.amount %></td>
-                <td><%= payoutlog.logtime %></td>
+                <td><%= payoutlog.logtime.substring(0, 5) %></td>
+                <td><%= payoutlog.code %></td>
+                <td><%= payoutlog.method %></td>
             </tr>
+
         <% }) %>
+        </tbody>
+        </table>
 <!--        <p><% if(payoutlogs){ %>-->
 <!--                Amount:   <%= payoutlogs.amount %>-->
 <!--        <% } else{ %>-->
