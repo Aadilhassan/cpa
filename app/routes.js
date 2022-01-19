@@ -90,7 +90,25 @@ module.exports = function(app, passport) {
    }
 
    res.render('dashboard.ejs',{
-    user: req.user
+    user: req.user,
+    country: req.query.country
+   });
+  } catch (err) {
+   res.render({err})
+  }
+  console.log(req.user.verified)
+
+  try {
+
+   if(req.user.verified === 0) {
+    return res.render('verify.ejs',{
+     user: req.user
+    });
+   }
+
+   res.render('dashboard.ejs',{
+    user: req.user,
+    country: req.query.country
    });
   } catch (err) {
    res.render({err})
@@ -126,7 +144,24 @@ module.exports = function(app, passport) {
    user: req.user
   });
  });
+ app.post('/coun',isLoggedIn ,  function (req,res) {
 
+
+   res.redirect('/earnings', {
+    user: req.user,
+    country: req.body.country
+
+   })
+  });
+
+
+ // app.post('/coun', isLoggedIn, function (req, res) {
+ //  res.render('dashboard.ejs', {
+ //   user: req.user,
+ //   countries: req.body.countries
+ //
+ //  });
+ // });
 
  app.get('/earnings', isLoggedIn, function (req, res) {
 
