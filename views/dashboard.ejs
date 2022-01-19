@@ -115,8 +115,17 @@
 
     <div id="al" ></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).parents('.code-container').find('.code span').text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+
     $(function() {
         $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&geoip=user&ua=user&format=JSONP&callback=?",
             function(data)
@@ -133,7 +142,10 @@
                         '<h4>'+offer.title+ '</h4>' +
                         '<span style="float: right"> $'+ mon+'</span><div style="float: left"> '   + offer.conversion +'' +
                         '</div>' +
-                        '</a>'  +'<input class="form-control"    disabled type="url" value='+offer.link+' id="myInput">'
+                        '</a>'  +'<div class="code-container">'+
+                       ' <span id="c2" class="code" hidden><span style="color:#59c053;">'+ offer.link +'</span></span>'+
+                '<button style="margin-left:5px;float:right;" onclick="copyToClipboard(this)" type="button" class="btn btn-outline-dark btn-xs">copie Link</button>'
+                +' </div>'
 
 
                 ;
@@ -170,6 +182,8 @@
 
 </div>
 <script>
+
+
     function copy() {
         /* Get the text field */
         var copyText = document.getElementById("myInput");
