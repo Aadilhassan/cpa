@@ -127,7 +127,7 @@
     }
 
     $(function() {
-        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&country=<% if(country){ %><%= country %><% } else{ %><% } %>&ua=user&format=JSONP&callback=?",
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&country=<% if(country){ %><%= country %><% } else{ %>IN<% } %>&ua=user&format=JSONP&callback=?",
             function(data)
             {
 
@@ -159,7 +159,7 @@
 <div class="card" style="margin-top: 60px">
 
     <div class="card-header">
-        Dashboard <%= country %><span style="float: right">user: <%= user.name %> </span>
+        Dashboard <% if(country){ %><%= country %><% } else{ %>IN<% } %><span style="float: right">user: <%= user.name %> </span>
     </div><form action="/coun" method="post">
     <select name="Country">
         <option value="" >--Select country--</option>
@@ -413,7 +413,7 @@
         <option value="ZM">Zambia</option>
         <option value="ZW">Zimbabwe</option>
     </select>
-    <input type="submit">Submit </input> </form>
+    <button type="submit">Submit</button> </form>
     <div class="card-body">
 <!--        <h5 class="card-title">Offers list</h5>-->
 <!--        <div class="container">-->

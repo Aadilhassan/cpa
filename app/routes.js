@@ -148,8 +148,8 @@ module.exports = function(app, passport) {
  });
  app.post('/coun',isLoggedIn ,  function (req,res) {
 
-
-   res.render('dashboard.ejs', {
+ console.log(req.body.country)
+   res.render('dashboards.ejs', {
     user: req.user,
     country: req.body.country
 
@@ -243,10 +243,10 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
  })
 
  app.post('/email-update',isLoggedIn , function (req,res){
- let idk = req.user.id
+ let idk = req.user.userid
   let ema = req.body.email;
   let sql = " UPDATE users SET ? WHERE ?"
-  connection.query(sql,[{email: ema}, {id: idk}], function (err, result) {
+  connection.query(sql,[{email: ema}, {userid: idk}], function (err, result) {
    if (err) throw err;
    console.log(" email updated");
   });
