@@ -85,13 +85,14 @@ module.exports = function(app, passport) {
 
    if(req.user.verified === 0) {
     return res.render('verify.ejs',{
-     user: req.user
+     user: req.user,
+     country: req.body.country
     });
    }
 
    res.render('dashboard.ejs',{
     user: req.user,
-    country: req.query.country
+    country: 'US'
    });
   } catch (err) {
    res.render({err})
@@ -102,13 +103,14 @@ module.exports = function(app, passport) {
 
    if(req.user.verified === 0) {
     return res.render('verify.ejs',{
-     user: req.user
+     user: req.user,
+     country: req.body.country
     });
    }
 
    res.render('dashboard.ejs',{
     user: req.user,
-    country: req.query.country
+    country:req.body.country
    });
   } catch (err) {
    res.render({err})
@@ -147,7 +149,7 @@ module.exports = function(app, passport) {
  app.post('/coun',isLoggedIn ,  function (req,res) {
 
 
-   res.redirect('/earnings', {
+   res.redirect('/dashboard', {
     user: req.user,
     country: req.body.country
 

@@ -127,7 +127,7 @@
     }
 
     $(function() {
-        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&geoip=user&country=<%= country %>&ua=user&format=JSONP&callback=?",
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&country=<% if(country){ %><%= country %><% } else{ %><% } %>&ua=user&format=JSONP&callback=?",
             function(data)
             {
 
