@@ -149,7 +149,7 @@ module.exports = function(app, passport) {
  app.post('/coun',isLoggedIn ,  function (req,res) {
 
 
-   res.redirect('/dashboard', {
+   res.render('dashboard.ejs', {
     user: req.user,
     country: req.body.country
 
