@@ -111,8 +111,10 @@
             </div>
             <form method="post" action="/payout-details">
             <div class="modal-body">
+                <input class="input-group" placeholder="paypal" name="paypal" value="<%= user.paypal %>">
                 <input class="input-group" placeholder="UPI" style="margin-bottom: 10px" name="upi" value="<%= user.upi %>">
                 <input class="input-group" placeholder="paytm" name="paytm" value="<%= user.paytm %>">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -162,6 +164,7 @@
                 <h5 class="card-title">Payout Details</h5>
                 <p>paytm: <%= user.paytm %></p>
                 <p>upi: <%= user.upi %></p>
+                <p>paypal: <%= user.paypal %></p>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Payment details</button>
             </div>
         </div>

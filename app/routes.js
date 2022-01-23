@@ -348,9 +348,10 @@ if(withdrawl_amount > req.user.amount){
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
   let upi = req.body.upi;
   let paytm = req.body.paytm;
-  let sql = "UPDATE users set  paytm =? , upi =?  WHERE userid = ?"
+  let paypal = req.body.paypal;
+  let sql = "UPDATE users set  paytm =? , upi =?, paypal =?  WHERE userid = ?"
 
-  connection.query(sql, [ paytm, upi, req.user.userid], function (err, result) {
+  connection.query(sql, [ paytm, upi, paypal, req.user.userid], function (err, result) {
    if (err) throw err;
    console.log("1 record inserted");
    res.redirect('/earnings')
