@@ -51,6 +51,7 @@
         visibility: visible;
         opacity: 1;
     }
+
 </style>
 <body>
 <div class="ch">
@@ -136,16 +137,16 @@
 
                 {
                     let  mon = Math.floor(offer.amount/2 * 100) / 100
-                    offers += '<div id="tab"  class="list-group-item ">' +
-                        '<a style="text-underline: none" href="' + offer.link + ' xmlns="http://www.w3.org/1999/html">'
+                    offers += '<div id="tab"  class="list-group-item ml-0 mr-0">' +
+                        '<a class="text-decoration-none" style="text-underline: none" href="' + offer.link + ' xmlns="http://www.w3.org/1999/html">'
                         +
-                        '<h5>'+offer.title+ '--></h5>' +
+                        '<h5>'+offer.title+ '-></h5>' +
                         '</a>'  +
-                        '<div id="coun">country:<country>' +offer.country + '</country></div>'+
-                        '<div>Rate: $'+ mon+'</div>'+'<div style="float: left"> Type:'   + offer.conversion +'' +
+                        '<div id="coun"><b>country:</b><country class="badge rounded-pill bg-primary">' +offer.country + '</country></div>'+
+                        '<div ><b>Rate:</b>'+'<span class="badge rounded-pill bg-success">$'+ mon +'</span>'+'</div>'+'<div style="float: left"> <b>Type:</b>'   + offer.conversion +'' +
                         '</div>' +'<div class="code-container">'+
                        ' <span id="c2" class="code" hidden><span style="color:#59c053;">'+ offer.link +'</span></span>'+
-                '<button style="float:right;" onclick="copyToClipboard(this)" type="button" class="btn btn-outline-dark btn-xs">copie Link</button>'
+                '<button style="float:right;" onclick="copyToClipboard(this)" type="button" class="btn btn-outline-success btn-xs">copie Link</button>'
                 +' </div>'  +'</div>'
 
 
