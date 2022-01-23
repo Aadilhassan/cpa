@@ -46,7 +46,22 @@ module.exports = function(app, passport) {
  app.get('/forgot', function (req, res) {
   res.render('forgot.ejs');
  });
+app.get('/reset-pass', function (req, res) {
+ let cd = req.query.lin
+ let email = req.query.email
 
+ connection.query("select * from users where email = '"+email+"'",function(err,rows) {
+
+  if(bcrypt.compareSync(cd , rows[0].password )){
+   res.render('reset.ejs')
+  }else{
+   res.send('retry')
+  }
+
+ })
+
+
+})
  app.post('/reset', async (req, res,)=> {
   const hashed = await bcrypt.hash(req.body.email, 10)
     let email = req.body.email
@@ -78,7 +93,7 @@ your password reset link is
 
 <a href="https://nodeweb5.azurewebsites.net/reset-pass?lin=${hashed}"><button>RESET</button></a>
 
-<link>https://nodeweb5.azurewebsites.net/reset-pass?lin=${hashed}</link>
+<link>https://nodeweb5.azurewebsites.net/reset-pass?lin=${hashed}&email=${email}</link>
 `
    };
    transporter.sendMail(mailOptions, function (err, info) {
