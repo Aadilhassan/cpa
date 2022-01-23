@@ -43,6 +43,58 @@ module.exports = function(app, passport) {
   res.render('signup.ejs', {message: req.flash('signupMessage')});
  });
 
+ app.get('/forgot', function (req, res) {
+  res.render('forgot.ejs');
+ });
+
+ app.post('/reset', async (req, res,)=> {
+  const hashed = await bcrypt.hash(req.body.email, 10)
+    let email = req.body.email
+   let sql =`select * from users where email = ?`
+  connection.query("select * from users where email = '"+email+"'",function(err,rows) {
+   console.log(rows[0]);
+
+   const senderMail = "aadilreact@yahoo.com";
+   let transporter = nodemailer.createTransport({
+    host: 'smtp.mail.yahoo.com',
+    port: 465,
+    service:'yahoo',
+    secure: false,
+    auth: {
+     user: senderMail,
+     pass: 'ctbdxcruxfpumcmn'
+    },
+    debug: false,
+    logger: true
+   });
+
+   const mailOptions = {
+    from: 'aadilreact@yahoo.com', // sender address
+    to: `${email}`, // list of receivers
+    subject: `Password RESET for user ${email}`, // Subject line
+    html: `
+ <h1> hi ${email}</h1>
+your password reset link is 
+
+<a href="https://nodeweb5.azurewebsites.net/reset-pass?lin=${hashed}"><button>RESET</button></a>
+
+<link>https://nodeweb5.azurewebsites.net/reset-pass?lin=${hashed}</link>
+`
+   };
+   transporter.sendMail(mailOptions, function (err, info) {
+    if(err)
+     console.log(err)
+    else
+     console.log(info);
+   });
+
+
+
+   res.send(`email sent to ${email}    ${rows}`)
+  })
+ })
+
+
  app.post('/signup', async (req, res, done) => {
   const hashed = await bcrypt.hash(req.body.password, 10)
   let user = req.body.username;

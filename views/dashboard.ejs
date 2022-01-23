@@ -157,33 +157,12 @@
     });
 </script>
     <script async src="https://static.addtoany.com/menu/page.js"></script>
-    <script>
-        function myfun() {
-            let e = document.getElementById("mylist");
-            let a = e.value;
-            let div = document.getElementById('tab')
-            let country = div.getElementsByTagName("country");
-            console.log(a)
-            let i, txtValue;
-            for (i = 0; i < a.length; i++) {
-                txtValue = country[i].textContent || country[i].innerText;
-                if (txtValue > -1) {
-                   // div[i].style.display = "";
-                    div[i]
-                } else {
-                    // div[i].style.display = "none";
-                    div[i]
-                }
-            }
 
-
-        }
-    </script>
 <div class="card" style="margin-top: 60px">
 
     <div class="card-header">
         Dashboard <span style="float: right">user: <%= user.name %> </span>
-    </div><form action="/coun" method="post">
+    </div>
     <select name="Country" id="mylist" onchange="myfun()" class='form-control'>
         <option value="" >--Select country--</option>
         <option value="AF">Afghanistan</option>
@@ -436,7 +415,7 @@
         <option value="ZM">Zambia</option>
         <option value="ZW">Zimbabwe</option>
     </select>
-    <button type="submit">Submit</button> </form>
+
     <div class="card-body">
 <!--        <h5 class="card-title">Offers list</h5>-->
 <!--        <div class="container">-->
