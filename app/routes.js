@@ -159,7 +159,7 @@ your password reset link is
 
    res.render('dashboard.ejs',{
     user: req.user,
-
+    country: req.query.country
    });
   } catch (err) {
    res.render({err})
@@ -177,7 +177,7 @@ your password reset link is
 
    res.render('dashboard.ejs',{
     user: req.user,
-
+    country: req.query.country
    });
   } catch (err) {
    res.render({err})

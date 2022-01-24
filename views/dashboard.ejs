@@ -128,7 +128,7 @@
     }
 
     $(function() {
-        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&ua=user&format=JSONP&callback=?",
+        $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&country=<% if(country){ %><%= country %><% } else{ %><% } %>&ua=user&format=JSONP&callback=?",
             function(data)
             {
 
@@ -142,7 +142,7 @@
                         +
                         '<h5>'+offer.title+ '-></h5>' +
                         '</a>'  +
-                        '<div id="coun"><b>country:</b><country class="badge rounded-pill bg-primary">' +offer.country + '</country></div>'+
+                        '<div id="coun"><b>country:</b><country class="badge rounded-pill bg-primary"><a class="link-light" href="/dashboard?country=' + offer.country + '">' +offer.country + '</a></country></div>'+
                         '<div ><b>Rate:</b>'+'<span class="badge rounded-pill bg-success">$'+ mon +'</span>'+'</div>'+'<div style="float: left"> <b>Type:</b>'   + offer.conversion +'' +
                         '</div>' +'<div class="code-container">'+
                        ' <span id="c2" class="code" hidden><span style="color:#59c053;">'+ offer.link +'</span></span>'+
@@ -162,7 +162,13 @@
 <div class="card" style="margin-top: 60px">
 
     <div class="card-header">
-        Dashboard <span style="float: right">user: <%= user.name %> </span>
+        Dashboard   <span style="float: right">user: <%= user.name %> </span>
+        <div> <a href="/dashboard" style="margin-bottom: 15px"><span class="badge  bg-primary">
+                    <% if(country){ %>
+                        <%= country %>
+                    <% } else{ %>
+                        All countries
+                    <% } %> <span style="color: black">X </span> </span></a></div>
     </div>
 
     <div class="card-body">
@@ -174,7 +180,9 @@
                     <div class="progress-bar progress-bar-info  active bg-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 0%">$ $ $ $ $ $ $  </div>
                 </div>
 
-                <div class="list-group offer-list " ></div>
+                <div class="list-group offer-list " >
+
+                </div>
             </div>
 <!--        </div>-->
     </div>
