@@ -131,7 +131,9 @@
         $.getJSON("https://cpalead.com/dashboard/reports/campaign_json.php?id=1678354&subid=<%= user.userid %>&country=<% if(country){ %><%= country %><% } else{ %><% } %>&ua=user&format=JSONP&callback=?",
             function(data)
             {
-
+         let num = data.number_offers;
+         console.log(num);
+         document.getElementById('num').innerHTML= `Total: ${num}`;
                 let offers = '';
                 $.each(data.offers, function(o, offer)
 
@@ -168,7 +170,8 @@
                         <%= country %>
                     <% } else{ %>
                         All countries
-                    <% } %> <span style="color: black">X </span> </span></a></div>
+                    <% } %> <span style="color: black">X </span> </span></a> <span id="num" style="float: right"> </span></div>
+
     </div>
 
     <div class="card-body">
