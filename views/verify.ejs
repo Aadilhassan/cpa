@@ -11,15 +11,7 @@
 <script>
 
 </script>
-<!--<h1>Verify Email</h1>-->
-<!--<form action="/updateEmail">-->
-<!--    <input type="text" value="-->
-<!--    <button type="submit">update</button>-->
-<!--</form>-->
 
-<!--<form action="/verify" method="post">-->
-<!--<button >send mail to <%= user.email %></button>-->
-<!--</form>-->
 <center>
 <div class="card " style="width: 25rem; align-self: center; margin-top: 30px">
     <h5 class="card-header  text-center ">Email verification</h5>
@@ -33,14 +25,7 @@
                 <button type="submit" class="btn btn-success">update Email</button>
             </div></form>
         </div>
-<!--<script>-->
-<!--    function bt(id) {-->
-<!--        console.log("clickrd")-->
-<!--        document.getElementById("btt").disabled = true;-->
-<!--        setTimeout(function(){document.getElementById("btt").disabled = false;},5000);-->
 
-<!--    }-->
-<!--</script>-->
 
             <form action="/verify" method="post" style="margin-top: 50px" >
                 <button  id="btt" class="btn btn-primary " onclick="bt">send a verification E-mail to <%= user.email %></button>
