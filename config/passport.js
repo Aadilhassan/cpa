@@ -22,7 +22,7 @@ module.exports = function(passport) {
  passport.use(
   'local-login',
   new LocalStrategy({
-   usernameField : 'username',
+   usernameField : 'email',
    passwordField: 'password',
    passReqToCallback: true
   },

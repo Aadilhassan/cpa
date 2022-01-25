@@ -115,6 +115,7 @@ your password reset link is
   let user = req.body.username;
   let pass = hashed;
   let email = req.body.email;
+  let ref  = req.query.ref;
   connection.query("select * from users where email = '"+email+"'",function(err,rows) {
    console.log(rows);
 
@@ -127,7 +128,7 @@ your password reset link is
 
 
 
-     let sql = "INSERT INTO users (name, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+     let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
 
      connection.query(sql, function (err, result) {
       if (err) throw err;
