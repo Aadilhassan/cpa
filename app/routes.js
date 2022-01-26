@@ -127,23 +127,12 @@ your password reset link is
 `)
      }else{
 
-      if(ref == undefined){
-       let sql = "INSERT INTO users (name, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+     let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
 
-       connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted");
-       });
-      }else{
-       let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
-
-       connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted");
-       });
-      }
-
-
+     connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+     });
      console.log(req.body);
      res.send("<h1>Account has been created you can now<a href='/login'> login</a></h1>   <script> setTimeout(function(){\n" +
          "            window.location.href = 'login';\n" +
@@ -272,7 +261,7 @@ your password reset link is
   const mailOptions = {
    from: 'aadilreact@yahoo.com', // sender address
    to: `${req.user.email}`, // list of receivers
-   subject: `Email varification for user ${req.user.name}`, // Subject line
+   subject: `Email varification for user ${req.user.username}`, // Subject line
    html: `
  <h1> hi ${req.user.username}</h1>
 your email varification link is 
