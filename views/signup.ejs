@@ -69,6 +69,21 @@
         <input
                 class="form-control"
                 type="text"
+                id="ref"
+                name="ref"
+                placeholder="ref"
+                value=" <% if(ref){ %>
+                      <%= ref %>
+                    <% } else{ %>
+                     1
+                    <% } %> "
+               hidden
+        />
+
+
+        <input
+                class="form-control"
+                type="text"
                 id="username"
                 name="username"
                 placeholder="username"

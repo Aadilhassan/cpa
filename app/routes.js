@@ -40,7 +40,9 @@ module.exports = function(app, passport) {
   //    });
 
  app.get('/signup', function (req, res) {
-  res.render('signup.ejs', {message: req.flash('signupMessage')});
+  let ref  = req.query.ref
+  console.log(ref)
+  res.render('signup.ejs', {message: req.flash('signupMessage'), ref: req.query.ref});
  });
 
  app.get('/forgot', function (req, res) {
@@ -115,7 +117,7 @@ your password reset link is
   let user = req.body.username;
   let pass = hashed;
   let email = req.body.email;
-  let ref  = req.query.ref || 1;
+  let ref  = req.body.ref;
 
   connection.query("select * from users where email = '"+email+"'",function(err,rows) {
    console.log(rows);
