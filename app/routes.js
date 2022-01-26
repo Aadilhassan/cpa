@@ -392,8 +392,8 @@ if(withdrawl_amount > req.user.amount){
   // let mail = req.query.email
   let money = req.query.payout/2
   let pass = 7091
-
-
+   let ref = req.query.subid2
+let refmon = req.query.payout/4
  let sql = "UPDATE users set amount= amount+? WHERE userid = ?";
 
  connection.query(sql, [money, userid], function (err, result) {
@@ -401,6 +401,10 @@ if(withdrawl_amount > req.user.amount){
   console.log(result);
   // res.send(` virtual_currency "money added"`);
 
+  let pql = "UPDATE users set amount= amount+? WHERE userid = ?";
+  connection.query(sql, [refmon, ref], function (err, result) {
+   console.log("Record Updated!!");
+   console.log(result);
  });
 
   // ------Getting data for history logs--------
