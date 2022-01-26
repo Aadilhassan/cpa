@@ -115,7 +115,7 @@ your password reset link is
   let user = req.body.username;
   let pass = hashed;
   let email = req.body.email;
-  let ref  = req.query.ref;
+  let ref  = req.query.ref || 1;
 
   connection.query("select * from users where email = '"+email+"'",function(err,rows) {
    console.log(rows);
