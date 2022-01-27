@@ -29,45 +29,43 @@ module.exports = function(app, passport) {
      function(req, res) {
       res.redirect('/~' + req.user.username);
      });
-  //    function (req, res) {
-  // console.log(req.body)
-  //     if (req.body.remember) {
-  //      req.session.cookie.maxAge = 1000 * 60 * 3;
-  //     } else {
-  //      req.session.cookie.expires = false;
-  //     }
-  //     res.redirect('/');
-  //    });
+ //    function (req, res) {
+ // console.log(req.body)
+ //     if (req.body.remember) {
+ //      req.session.cookie.maxAge = 1000 * 60 * 3;
+ //     } else {
+ //      req.session.cookie.expires = false;
+ //     }
+ //     res.redirect('/');
+ //    });
 
  app.get('/signup', function (req, res) {
-  let ref  = req.query.ref
-  console.log(ref)
-  res.render('signup.ejs', {message: req.flash('signupMessage'), ref: req.query.ref});
+  res.render('signup.ejs', {message: req.flash('signupMessage')});
  });
 
  app.get('/forgot', function (req, res) {
   res.render('forgot.ejs');
  });
-app.get('/reset-pass', function (req, res) {
- let cd = req.query.lin
- let email = req.query.email
+ app.get('/reset-pass', function (req, res) {
+  let cd = req.query.lin
+  let email = req.query.email
 
- connection.query("select * from users where email = '"+email+"'",function(err,rows) {
+  connection.query("select * from users where email = '"+email+"'",function(err,rows) {
 
-  if(bcrypt.compareSync(cd , rows[0].password )){
-   res.render('reset.ejs')
-  }else{
-   res.send('retry')
-  }
+   if(bcrypt.compareSync(cd , rows[0].password )){
+    res.render('reset.ejs')
+   }else{
+    res.send('retry')
+   }
+
+  })
+
 
  })
-
-
-})
  app.post('/reset', async (req, res,)=> {
   const hashed = await bcrypt.hash(req.body.email, 10)
-    let email = req.body.email
-   let sql =`select * from users where email = ?`
+  let email = req.body.email
+  let sql =`select * from users where email = ?`
   connection.query("select * from users where email = '"+email+"'",function(err,rows) {
    console.log(rows[0]);
 
@@ -117,35 +115,46 @@ your password reset link is
   let user = req.body.username;
   let pass = hashed;
   let email = req.body.email;
-  let ref  = req.body.ref;
+  let ref  = req.query.ref;
 
   connection.query("select * from users where email = '"+email+"'",function(err,rows) {
    console.log(rows);
 
-    try {
-     if( rows.length) {
-      console.log("That email is already taken.")
+   try {
+    if( rows.length) {
+     console.log("That email is already taken.")
      res.send(`That email ${email} is already taken. you can <a href="/login">log in </a> 
 `)
+    }else{
+
+     if(ref == undefined){
+      let sql = "INSERT INTO users (name, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
+
+      connection.query(sql, function (err, result) {
+       if (err) throw err;
+       console.log("1 record inserted");
+      });
      }else{
+      let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
 
-     let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
+      connection.query(sql, function (err, result) {
+       if (err) throw err;
+       console.log("1 record inserted");
+      });
+     }
 
-     connection.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("1 record inserted");
-     });
+
      console.log(req.body);
      res.send("<h1>Account has been created you can now<a href='/login'> login</a></h1>   <script> setTimeout(function(){\n" +
          "            window.location.href = 'login';\n" +
          "         }, 3000);</script>");
 
     }   }catch {
-     res.send(err)
-    }
+    res.send(err)
+   }
   })
 
-  })
+ })
 
  app.get('/dashboard', isLoggedIn, function (req, res) {
   console.log(req.user.verified)
@@ -263,7 +272,7 @@ your password reset link is
   const mailOptions = {
    from: 'aadilreact@yahoo.com', // sender address
    to: `${req.user.email}`, // list of receivers
-   subject: `Email varification for user ${req.user.username}`, // Subject line
+   subject: `Email varification for user ${req.user.name}`, // Subject line
    html: `
  <h1> hi ${req.user.username}</h1>
 your email varification link is 
@@ -276,7 +285,7 @@ your email varification link is
    else
     console.log(info);
   });
-res.send(`<h3>A verification email has been sent to </h3><h2><bold>${req.user.email}</bold></h2> please check your email inbox`)
+  res.send(`<h3>A verification email has been sent to </h3><h2><bold>${req.user.email}</bold></h2> please check your email inbox`)
  });
 
 
@@ -292,12 +301,12 @@ res.send(`<h3>A verification email has been sent to </h3><h2><bold>${req.user.em
    if (err) throw err;
    console.log(" email verified");
   });
-res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
+  res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
  })
 
  app.post('/email-update',isLoggedIn , function (req,res){
- let idk = req.user.userid
+  let idk = req.user.userid
   let ema = req.body.email;
   let sql = " UPDATE users SET ? WHERE ?"
   connection.query(sql,[{email: ema}, {userid: idk}], function (err, result) {
@@ -317,7 +326,7 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
 
 // -----------------start payout---------------------------------------
  app.post('/payout',isLoggedIn, function (req,res) {
- let withdrawl_amount = req.body.amount
+  let withdrawl_amount = req.body.amount
   console.log(req.body.method)
   console.log(req.user.userid)
   let method = req.body.method
@@ -325,27 +334,27 @@ res.send("email verified go to <a href='/dashboard'>Dashboard</a>")
   let email = req.user.email
   let sql = "INSERT INTO payoutlogs (amount, email , method , userid) VALUES  ('" + withdrawl_amount + "','" + email + "','" + method + "', '" + id +"')";
 
-if(withdrawl_amount > req.user.amount){
+  if(withdrawl_amount > req.user.amount){
 
- res.send(`you can not withdrawl $ ${withdrawl_amount} because you only have $ ${req.user.amount}`)
-} else {
-
-
-
-  let pql = `UPDATE users SET amount = amount - ? where userid  = ?   `
-  connection.query(pql, [ withdrawl_amount, req.user.userid], function () {
-   console.log("1 record inserted");
-  })
+   res.send(`you can not withdrawl $ ${withdrawl_amount} because you only have $ ${req.user.amount}`)
+  } else {
 
 
 
-  connection.query(sql, function (err, result) {
-   if (err) throw err;
-   console.log("1 record inserted");
-   res.redirect('/earnings')
-  })
+   let pql = `UPDATE users SET amount = amount - ? where userid  = ?   `
+   connection.query(pql, [ withdrawl_amount, req.user.userid], function () {
+    console.log("1 record inserted");
+   })
 
-}
+
+
+   connection.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+    res.redirect('/earnings')
+   })
+
+  }
  })
  app.post('/payout-details',isLoggedIn ,  function (req,res) {
   let upi = req.body.upi;
@@ -392,25 +401,21 @@ if(withdrawl_amount > req.user.amount){
   // let mail = req.query.email
   let money = req.query.payout/2
   let pass = 7091
-   let ref = req.query.subid2
-let refmon = req.query.payout/4
- let sql = "UPDATE users set amount= amount+? WHERE userid = ?";
 
- connection.query(sql, [money, userid], function (err, result) {
-  console.log("Record Updated!!");
-  console.log(result);
-  // res.send(` virtual_currency "money added"`);
 
-  let pql = "UPDATE users set amount= amount+? WHERE userid = ?";
-  connection.query(sql, [refmon, ref], function (err, result) {
+  let sql = "UPDATE users set amount= amount+? WHERE userid = ?";
+
+  connection.query(sql, [money, userid], function (err, result) {
    console.log("Record Updated!!");
    console.log(result);
- });
+   // res.send(` virtual_currency "money added"`);
+
+  });
 
   // ------Getting data for history logs--------
- let his = "INSERT INTO payinlogs (userid, amount) VALUES ?";
+  let his = "INSERT INTO payinlogs (userid, amount) VALUES ?";
   let values =[
-      [req.query.subid, req.query.payout/2]
+   [req.query.subid, req.query.payout/2]
   ];
   connection.query(his,  [values], function (err, result) {
    console.log("Record added to the logs !!");
@@ -428,7 +433,7 @@ let refmon = req.query.payout/4
 
  let obj = {};
  app.get('/data', function(req, res){
-let sql = "SELECT * FROM logs Where id = ?"
+  let sql = "SELECT * FROM logs Where id = ?"
 
   connection.query(sql,[req.query.id], function(err, result) {
 
@@ -459,9 +464,9 @@ let sql = "SELECT * FROM logs Where id = ?"
 
 
 
-function isLoggedIn(req, res, next){
- if(req.isAuthenticated())
-  return next();
+ function isLoggedIn(req, res, next){
+  if(req.isAuthenticated())
+   return next();
 
- res.redirect('/');
-}}
+  res.redirect('/');
+ }}
