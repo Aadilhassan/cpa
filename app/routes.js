@@ -282,7 +282,7 @@ your password reset link is
  <h1> hi ${req.user.username}</h1>
 your email varification link is 
 
-<a href="https://nodeweb5.azurewebsites.net/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
+<a href="https://cpa-3.aadilhassan.repl.co/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
     };
     transporter.sendMail(mailOptions, function(err, info) {
       if (err)
