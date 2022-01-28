@@ -12,10 +12,7 @@ let connection = mysql.createConnection(dbconfig.connection);
 connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
-    setInterval(function () {
-    connection.query('SELECT 1');
-console.log("done")
-}, 10000);
+    
     res.render('index.ejs');
   });
 
