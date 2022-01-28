@@ -67,7 +67,19 @@
          <div class="alert alert-danger"><%= message %></div>
         <% } %>
 <!--  -->
-
+         <input
+                class="form-control"
+                type="text"
+                id="refer"
+                name="refer"
+                placeholder="refered by"
+        
+          value="<% if(ref){ %>
+   <%= ref %>
+ <% } else{ %>  
+   0
+<% } %>" 
+        />
 
         <input
                 class="form-control"

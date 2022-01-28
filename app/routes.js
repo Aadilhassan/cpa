@@ -44,7 +44,7 @@ console.log("done")
   //    });
 
   app.get('/signup', function(req, res) {
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
+    res.render('signup.ejs', { message: req.flash('signupMessage'), ref : req.query.ref });
   });
 
   app.get('/forgot', function(req, res) {
@@ -119,8 +119,8 @@ your password reset link is
     let user = req.body.username;
     let pass = hashed;
     let email = req.body.email;
-    let ref = req.query.ref;
-
+    let ref = req.body.refer;
+ console.log(ref)
     connection.query("select * from users where email = '" + email + "'", function(err, rows) {
       console.log(rows);
 
@@ -131,14 +131,6 @@ your password reset link is
 `)
         } else {
 
-          if (ref == undefined) {
-            let sql = "INSERT INTO users (name, email , password) VALUES  ('" + user + "','" + email + "','" + pass + "')";
-
-            connection.query(sql, function(err, result) {
-              if (err) throw err;
-              console.log("1 record inserted");
-            });
-          } else {
             let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
 
             connection.query(sql, function(err, result) {
@@ -153,7 +145,7 @@ your password reset link is
             "            window.location.href = 'login';\n" +
             "         }, 3000);</script>");
 
-        }
+        
       } catch {
         res.send(err)
       }
