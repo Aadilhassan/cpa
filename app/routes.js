@@ -12,7 +12,14 @@ let connection = mysql.createConnection(dbconfig.connection);
 connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
-    
+    setInterval(function () {
+    let sql = "select * from users where userid=1 ;"
+
+            connection.query(sql, function(err, result) {
+              if (err) throw err;
+              console.log(result);
+            });
+}, 5000);
     res.render('index.ejs');
   });
 
