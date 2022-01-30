@@ -26,7 +26,13 @@ module.exports = function(app, passport) {
 
 app.get('/admin',isLoggedIn, function(req, res) {
   if(req.user.admin ===  1){
-res.render('admin.ejs',);}
+     let pql = `SELECT * FROM payoutlogs WHERE code = 0`
+    connection.query(pql, function(err, rows) {
+      console.log(rows)
+ 
+res.render('admin.ejs',{
+  payout: rows,
+});})}
 else{
     res.render('dashboard.ejs',{
         user: req.user,
