@@ -13,7 +13,7 @@ connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
     setInterval(function () {
-    let sql = "select * from users where userid=1 ;"
+    let sql = "select * from users where userid=2 ;"
 
             connection.query(sql, function(err, result) {
               if (err) throw err;
@@ -24,7 +24,18 @@ module.exports = function(app, passport) {
   });
 
 
+app.get('/admin',isLoggedIn, function(req, res) {
+  if(req.user.admin ===  1){
+res.render('admin.ejs',);}
+else{
+    res.render('dashboard.ejs',{
+        user: req.user,
+        country: req.query.country
+      });
+}    
+});
 
+  
   app.get('/login', function(req, res) {
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });

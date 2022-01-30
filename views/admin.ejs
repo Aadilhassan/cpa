@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML 5 Boilerplate</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class="card" style="width: 12rem; margin-top:10px; margin-left:10px">
+    <h5 class="card-header">User name: aadil</h5>
+    <div class="card-body text-info fs-3">
+      <p class="card-text">
+        email:
+      </p>
+      <p class="card-text">
+        userid:
+      </p>
+      <p class="card-text">
+        amount:
+      </p>
+      <p class="card-text">
+        method:
+      </p>
+      <p class="card-text">
+        payoutid:
+      </p>
+
+
+
+      <div class="row">
+        <form action="/pay-done" method="post">
+          <input name="payoutid" hidden value="">
+          <button type="submit" class="btn btn-success">Done</button>
+        </form>
+        <form action="/pay-decline" method="post">
+          <input name="payoutid" hidden value="">
+          <button type="" class="btn btn-danger" style="float:right; margin-left:20px">Decline</button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
