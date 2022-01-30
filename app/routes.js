@@ -12,14 +12,7 @@ let connection = mysql.createConnection(dbconfig.connection);
 connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
-    setInterval(function () {
-    let sql = "select * from users where userid=2 ;"
-
-            connection.query(sql, function(err, result) {
-              if (err) throw err;
-              console.log(result);
-            });
-}, 5000);
+    
     res.render('index.ejs');
   });
 
@@ -32,6 +25,7 @@ app.get('/admin',isLoggedIn, function(req, res) {
  
 res.render('admin.ejs',{
   payout: rows,
+  adm :req.user.admin,
 });})}
 else{
     res.render('dashboard.ejs',{
@@ -239,7 +233,8 @@ your password reset link is
   });
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
-      user: req.user
+      user: req.user,
+      adm :req.user.admin,
     });
   });
 
