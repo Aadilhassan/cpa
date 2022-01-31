@@ -12,30 +12,32 @@ let connection = mysql.createConnection(dbconfig.connection);
 connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
-    
+
     res.render('index.ejs');
   });
 
 
-app.get('/admin',isLoggedIn, function(req, res) {
-  if(req.user.admin ===  1){
-     let pql = `SELECT * FROM payoutlogs WHERE code = 0`
-    connection.query(pql, function(err, rows) {
-      console.log(rows)
- 
-res.render('admin.ejs',{
-  payout: rows,
-  adm :req.user.admin,
-});})}
-else{
-    res.render('dashboard.ejs',{
+  app.get('/admin', isLoggedIn, function(req, res) {
+    if (req.user.admin === 1) {
+      let pql = `SELECT * FROM payoutlogs WHERE code = 0`
+      connection.query(pql, function(err, rows) {
+        console.log(rows)
+
+        res.render('admin.ejs', {
+          payout: rows,
+          adm: req.user.admin,
+        });
+      })
+    }
+    else {
+      res.render('dashboard.ejs', {
         user: req.user,
         country: req.query.country
       });
-}    
-});
+    }
+  });
 
-  
+
   app.get('/login', function(req, res) {
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });
@@ -59,7 +61,7 @@ else{
   //    });
 
   app.get('/signup', function(req, res) {
-    res.render('signup.ejs', { message: req.flash('signupMessage'), ref : req.query.ref });
+    res.render('signup.ejs', { message: req.flash('signupMessage'), ref: req.query.ref });
   });
 
   app.get('/forgot', function(req, res) {
@@ -135,7 +137,7 @@ your password reset link is
     let pass = hashed;
     let email = req.body.email;
     let ref = req.body.refer;
- console.log(ref)
+    console.log(ref)
     connection.query("select * from users where email = '" + email + "'", function(err, rows) {
       console.log(rows);
 
@@ -146,21 +148,21 @@ your password reset link is
 `)
         } else {
 
-            let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
+          let sql = "INSERT INTO users (name, email , password, referedby) VALUES  ('" + user + "','" + email + "','" + pass + "','" + ref + "')";
 
-            connection.query(sql, function(err, result) {
-              if (err) throw err;
-              console.log("1 record inserted");
-            });
-          }
+          connection.query(sql, function(err, result) {
+            if (err) throw err;
+            console.log("1 record inserted");
+          });
+        }
 
 
-          console.log(req.body);
-          res.send("<h1>Account has been created you can now<a href='/login'> login</a></h1>   <script> setTimeout(function(){\n" +
-            "            window.location.href = 'login';\n" +
-            "         }, 3000);</script>");
+        console.log(req.body);
+        res.send("<h1>Account has been created you can now<a href='/login'> login</a></h1>   <script> setTimeout(function(){\n" +
+          "            window.location.href = 'login';\n" +
+          "         }, 3000);</script>");
 
-        
+
       } catch {
         res.send(err)
       }
@@ -234,7 +236,7 @@ your password reset link is
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
       user: req.user,
-      adm :req.user.admin,
+      adm: req.user.admin,
     });
   });
 

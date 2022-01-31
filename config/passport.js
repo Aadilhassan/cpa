@@ -29,8 +29,8 @@ module.exports = function(passport) {
       (req, username, password, done) => {
    connection.query("SELECT * FROM users WHERE email = ? ", [username],
    function(err, rows){
-    console.log(rows)
-
+  //  console.log(rows)
+   
     if(err)
      return done(err);
     if(!rows.length){
@@ -45,41 +45,41 @@ module.exports = function(passport) {
  );
 
 
- passport.use('local-signup', new LocalStrategy({
-      // by default, local strategy uses username and password, we will override with email
-      usernameField : 'email',
-      passwordField : 'password',
-      passReqToCallback : true // allows us to pass back the entire request to the callback
-     },
-     function(req, email, password, done) {
+//  passport.use('local-signup', new LocalStrategy({
+//       // by default, local strategy uses username and password, we will override with email
+//       usernameField : 'email',
+//       passwordField : 'password',
+//       passReqToCallback : true // allows us to pass back the entire request to the callback
+//      },
+//      function(req, email, password, done) {
 
-      // find a user whose email is the same as the forms email
-      // we are checking to see if the user trying to login already exists
-      connection.query("select * from users where user_email = '"+email+"'",function(err,rows){
-       console.log(rows);
-       console.log("above row object");
-       if (err)
-        return done(err);
-       if (rows.length) {
-        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-       } else {
+//       // find a user whose email is the same as the forms email
+//       // we are checking to see if the user trying to login already exists
+//       connection.query("select * from users where user_email = '"+email+"'",function(err,rows){
+//        console.log(rows);
+//        console.log("above row object");
+//        if (err)
+//         return done(err);
+//        if (rows.length) {
+//         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+//        } else {
 
 
-        // if there is no user with that email
-        // create the user
-        let newUserMysql = new Object();
+//         // if there is no user with that email
+//         // create the user
+//         let newUserMysql = new Object();
 
-        newUserMysql.email    = email;
-        newUserMysql.password = password; // use the generateHash function in our user model
+//         newUserMysql.email    = email;
+//         newUserMysql.password = password; // use the generateHash function in our user model
 
-        let insertQuery = "INSERT INTO users ( user_email, user_password,) values ('" + email +"','"+ password +"')";
-        console.log(insertQuery);
-        connection.query(insertQuery,function(err,rows){
-         // newUserMysql.id = rows.insertId;
+//         let insertQuery = "INSERT INTO users ( user_email, user_password,) values ('" + email +"','"+ password +"')";
+//         console.log(insertQuery);
+//         connection.query(insertQuery,function(err,rows){
+//          // newUserMysql.id = rows.insertId;
 
-         return done(null, newUserMysql);
-        });
-       }
-      });
-     }));
+//          return done(null, newUserMysql);
+//         });
+//        }
+//       });
+//      }));
 };
