@@ -4,6 +4,9 @@ let cookieParser = require('cookie-parser');
 let morgan = require('morgan');
 let app = express();
 let port = process.env.PORT || 8080 || 8888
+const mysql = require('mysql');
+const dbconfig = require("./config/database");
+let connection = mysql.createConnection(dbconfig.connection);
 
 const bodyParser = require("body-parser");
 
@@ -33,6 +36,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+let pql = `SELECT * FROM payoutlogs WHERE code = 0`
 
 app.use(passport.initialize());
 app.use(passport.session());

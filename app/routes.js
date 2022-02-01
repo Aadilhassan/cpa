@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 
 let connection = mysql.createConnection(dbconfig.connection);
 
-connection.query('USE ' + dbconfig.database);
+// connection.query('USE ' + dbconfig.database);
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
 
