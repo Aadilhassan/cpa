@@ -1,13 +1,15 @@
 {
  "name": "node-loginregister",
- "main": "server.js",
+ "main": "index.js",
  "scripts": {
-  "start": "pm2 start index.js ",
+  "start": "node index.js ",
+  "node": "pm2 start index.js",
   "monit": "pm2 monit",
   "logs": " pm2 logs",
   "stop": "pm2 stop index.js",
   "dev": "nodemon ./index",
-  "del": " pm2 delete all"
+  "del": " pm2 delete all",
+  "restart": "pm2 restart index.js"
  },
  "dependencies": {
   "bcrypt": "^5.0.1",

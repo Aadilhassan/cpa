@@ -50,4 +50,4 @@ app.timeout = 0;
 app.listen(port);
 console.log("Port: " + port);
 setTimeout((function() {
-    return process.exit(22);), 10000);
+    return process.exit(22);}), 1800000);

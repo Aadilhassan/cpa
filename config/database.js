@@ -16,6 +16,7 @@ module.exports = {
   'host':'sql6.freesqldatabase.com',
   'user':'sql6468724',
   'port':'3306',
+  'database':'sql6468724',
   // mysql -u aadil -h testnyt.mysql.database.azure.com -P 3306 -p
   'password': 'huIHGXtenz'
  },

@@ -42,6 +42,17 @@ module.exports = function(app, passport) {
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });
 
+  app.get('/test', function(req, res) {
+    connection.query("SELECT * FROM users", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+  //   let pql = "SELECT * FROM payoutlogs ;"
+  //   connection.query("SELECT * FROM payoutlogs ", function(err, rows) {
+  //     console.log(rows)
+  //   res.send("yo");
+  // });
+  });
   app.post('/login', passport.authenticate('local-login', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
@@ -241,19 +252,23 @@ your password reset link is
   });
 
 
-
-
+// app.get('/test',isLoggedIn,function(req,res){
+//   let pql = "SELECT * FROM payoutlogs WHERE userid = 2 && code = 0  "
+//     connection.query(pql, function(err, rows) {
+//      // console.log(rows) 
+//     //  res.send(rows);
+// });
   app.get('/earnings', isLoggedIn, function(req, res) {
 
-    let pql = `SELECT * FROM payoutlogs WHERE userid = ${req.user.userid} && code = 0`
+    let pql = "SELECT * FROM payoutlogs WHERE userid = 2 && code = 0  "
     connection.query(pql, function(err, rows) {
       console.log(rows)
-      // if (rows.length == 0) {
-      //   console.log("There are no active payouts")
-      // } else {
-      //   console.log(rows[0])
+       if (rows.length == 0) {
+       console.log("There are no active payouts")
+       } else {
+        console.log(rows[0])
 
-      // }
+       }
        let sql = "SELECT * FROM payinlogs Where userid = ?"
 
       connection.query(sql, req.user.userid, function(err, result) {
