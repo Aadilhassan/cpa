@@ -248,13 +248,13 @@ your password reset link is
     let pql = `SELECT * FROM payoutlogs WHERE userid = ${req.user.userid} && code = 0`
     connection.query(pql, function(err, rows) {
       console.log(rows)
-      if (rows.length == 0) {
-        console.log("There are no active payouts")
-      } else {
-        console.log(rows[0])
+      // if (rows.length == 0) {
+      //   console.log("There are no active payouts")
+      // } else {
+      //   console.log(rows[0])
 
-      }
-      let sql = "SELECT * FROM payinlogs Where userid = ?"
+      // }
+       let sql = "SELECT * FROM payinlogs Where userid = ?"
 
       connection.query(sql, req.user.userid, function(err, result) {
         console.log(result)

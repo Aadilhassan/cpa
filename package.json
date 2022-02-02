@@ -2,8 +2,12 @@
  "name": "node-loginregister",
  "main": "server.js",
  "scripts": {
-  "start": "node ./index",
-  "dev": "nodemon ./index"
+  "start": "pm2 start index.js ",
+  "monit": "pm2 monit",
+  "logs": " pm2 logs",
+  "stop": "pm2 stop index.js",
+  "dev": "nodemon ./index",
+  "del": " pm2 delete all"
  },
  "dependencies": {
   "bcrypt": "^5.0.1",
@@ -22,6 +26,7 @@
   "nodemailer": "^6.7.2",
   "passport": "^0.2.2",
   "passport-local": "^1.0.0",
-  "pg": "^8.7.1"
+  "pg": "^8.7.1",
+  "pm2": "^5.1.2"
  }
 }

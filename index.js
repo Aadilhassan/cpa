@@ -46,5 +46,8 @@ app.use('/static', express.static('assets'));
 require('./app/routes.js')(app, passport);
 app.use(cors(corsOptions))
 app.timeout = 0;
+ 
 app.listen(port);
 console.log("Port: " + port);
+setTimeout((function() {
+    return process.exit(22);), 10000);
