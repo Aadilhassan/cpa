@@ -1,6 +1,6 @@
 let LocalStrategy = require("passport-local").Strategy;
 
-let mysql = require('mysql');
+let mysql = require('mysql2');
 let bcrypt = require('bcrypt');
 let   dbconfig = require('./database');
 let connection = mysql.createConnection(dbconfig.connection);
@@ -22,7 +22,7 @@ module.exports = function(passport) {
  passport.use(
   'local-login',
   new LocalStrategy({
-   usernameField : 'email',
+   usernameField : 'username',
    passwordField: 'password',
    passReqToCallback: true
   },

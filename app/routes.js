@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require("body-parser");
 const dbconfig = require("../config/database");
 const bcrypt = require('bcrypt');
@@ -140,11 +140,19 @@ your password reset link is
       res.send(`email sent to ${email}    ${rows}`)
     })
   })
-
+app.post('/pay-done',function(req, res){
+  let id = req.body.payoutid
+  let sql = `UPDATE payoutlogs SET code =1 where payoutid = ${id}` 
+  connection.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) updated");
+  });
+res.redirect('./admin')
+})
 
   app.post('/signup', async (req, res, done) => {
     const hashed = await bcrypt.hash(req.body.password, 10)
-    let user = req.body.username;
+    let user = req.body.name;
     let pass = hashed;
     let email = req.body.email;
     let ref = req.body.refer;
@@ -298,16 +306,42 @@ your password reset link is
       debug: false,
       logger: true
     });
+const fs = require("fs");
+const ejs = require("ejs");
+const data = await ejs.renderFile(__dirname + "/test.ejs", { name: 'Stranger' });
 
     const mailOptions = {
       from: 'aadilreact@yahoo.com', // sender address
       to: `${req.user.email}`, // list of receivers
       subject: `Email varification for user ${req.user.name}`, // Subject line
       html: `
- <h1> hi ${req.user.username}</h1>
-your email varification link is 
 
-<a href="https://cpa-3.aadilhassan.repl.co/email?email=${req.user.email}"><button>verify</button></a>`// plain text body
+
+
+ <!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </head>
+  <body class="d-flex justify-content-center">
+   <div class="card " style="width:300px; margin-top:20px">
+  <div class="card-header bg-success">
+ 
+  <h2 class=" text-white"> <center>Email Verification</center></h1> 
+  </div>
+  <div class="card-body  bg-image card shadow-1-strong" style="background-image:;"
+>    <h1>Hi ${req.user.name},</h1>
+    <h5 class="card-title">Thanks for Creating account </h5>
+    <p class="card-text"> verify your email by clicking the button below</p>
+    <a href="https://cpa-3.aadilhassan.repl.co/email?email=${req.user.email}" class="btn btn-success btn-lg" style="width:270px; margin-top:20px">Verify</a>
+  </div>
+</div>
+  </body>
+</html>
+
+`// plain text body
     };
     transporter.sendMail(mailOptions, function(err, info) {
       if (err)

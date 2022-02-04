@@ -2,13 +2,14 @@
  "name": "node-loginregister",
  "main": "index.js",
  "scripts": {
-  "start": "node index.js ",
-  "node": "pm2 start index.js",
+  "start": "pm2 start index.js",
+  "node": "node index.js",
   "monit": "pm2 monit",
   "logs": " pm2 logs",
   "stop": "pm2 stop index.js",
   "dev": "nodemon ./index",
   "del": " pm2 delete all",
+  "plus": "pm2 plus",
   "restart": "pm2 restart index.js"
  },
  "dependencies": {
@@ -23,7 +24,7 @@
   "express": "^4.13.0",
   "express-session": "^1.11.3",
   "morgan": "^1.6.0",
-  "mysql": "^2.7.0",
+  "mysql2": "^2.3.3",
   "node-fetch": "^3.1.0",
   "nodemailer": "^6.7.2",
   "passport": "^0.2.2",

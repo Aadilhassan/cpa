@@ -4,7 +4,7 @@ let cookieParser = require('cookie-parser');
 let morgan = require('morgan');
 let app = express();
 let port = process.env.PORT || 8080 || 8888
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dbconfig = require("./config/database");
 let connection = mysql.createConnection(dbconfig.connection);
 
@@ -50,4 +50,4 @@ app.timeout = 0;
 app.listen(port);
 console.log("Port: " + port);
 setTimeout((function() {
-    return process.exit(22);}), 1800000);
+    return process.exit(500);}), 1800000);

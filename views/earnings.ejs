@@ -74,16 +74,48 @@
                     <form action="/payout" method="post">
 
                     <h3>Enter amount</h3>
-       <input class="input-group" type="number" name="amount" placeholder="amount">
+                      <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">$</span>
+       <input class="form-control" required type="number" min="5.00" name="amount" placeholder="amount">
+                      </div>
 
 
+
+
+
+                      
               <h3>Payout method</h3>
+                      
+<% if(user.upi){ %>
+   <label class="radio-inline"><input type="radio" class="form-check-input" id="radio1" required name="method" value="UPI=  <%= user.upi %>">UPI  </label>
+                
+ <% } else{ %>  
+    <label class="radio-inline"><input type="radio" class="form-input" name="method" disabled value="UPI=  <%= user.upi %>">UPI 
+ </label>
+                
+   
+<% } %>
 
-                <label class="radio-inline"><input type="radio" name="method" value="UPI=  <%= user.upi %>">UPI</label>
-                <label class="radio-inline"><input type="radio" name="method" value="paytm= <%= user.paytm %>">Paytm</label>
+  
+                 <% if(user.paytm){ %>    
+                <label class="radio-inline"><input type="radio" class="form-check-input" id="radio2"  name="method" value="paytm= <%= user.paytm %>">Paytm  </label>
+<% } else{ %>  
+  <label class="radio-inline"><input type="radio" class="form-check-input name="method" disabled value="paytm= <%= user.paytm %>">Paytm  </label>
+  <% } %>
+    
+    
+
+                   <% if(user.paypal){ %>
+<label class="radio-inline"><input class="form-check-input" id="radio2"  type="radio" name="method" value="paypal= <%= user.paypal%>">Paypal </label>
+<% } else{ %>  
+  <label class="radio-inline"><input class="form-input" type="radio"  name="method" disabled value="paypal= <%= user.paypal%>">Paypal </label>
+<% } %>
 
 
 
+
+
+  
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Request payout</button>
@@ -111,10 +143,17 @@
             </div>
             <form method="post" action="/payout-details">
             <div class="modal-body">
-                <input class="input-group" placeholder="paypal" name="paypal" value="<%= user.paypal %>">
-                <input class="input-group" placeholder="UPI" style="margin-bottom: 10px" name="upi" value="<%= user.upi %>">
-                <input class="input-group" placeholder="paytm" name="paytm" value="<%= user.paytm %>">
 
+              
+              <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">paypal</span>
+                <input class="form-control" placeholder="paypal" type="email"  name="paypal" value="<%= user.paypal %>">
+              </div>
+              <div class="input-group mb-3 ">
+  <span class="input-group-text" id="basic-addon1">upi</span>             <input class="form-control" placeholder="upi" style="" name="upi" value="<%= user.upi %>">
+              </div>
+              <div class="input-group "><span class="input-group-text" id="basic-addon1">paytm</span>         <input class="form-control" placeholder="paytm" name="paytm" value="<%= user.paytm %>">
+              </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -247,5 +286,12 @@
   <div class="card-header"> Refer link </div>
   <div class="card-body" >
 <input class="input" style="width:100%"    type="text" value="https://cpa-3.aadilhassan.repl.co/signup?ref=<%= user.userid %>"> </div> </div>
+      <footer class="py-5 bg-black">
+ <div class="container">
+  <p class="text-center text-white m-0 small">
+   Copyright&nbsp;© Money Monster 2022
+  </p>
+ </div>
+</footer>
 </body>
 </html>

@@ -13,13 +13,13 @@
 
 module.exports = {
  'connection':{
-  'host':'sql6.freesqldatabase.com',
-  'user':'sql6468724',
+  'host':'bvinjliam2lzyvds0whj-mysql.services.clever-cloud.com',
+  'user':'u7u6lx5gwyai3gjq',
   'port':'3306',
-  'database':'sql6468724',
+  'database':'bvinjliam2lzyvds0whj',
   // mysql -u aadil -h testnyt.mysql.database.azure.com -P 3306 -p
-  'password': 'huIHGXtenz'
+  'password': '1pvMpq78FPzrlQlb9kTl'
  },
- 'database':'sql6468724',
+ 'database':'bvinjliam2lzyvds0whj',
  'user_table':'users'
 }
