@@ -13,22 +13,27 @@
 </script>
 
 <center>
-<div class="card " style="width: 25rem; align-self: center; margin-top: 30px">
+<div class="card " style="width: 20rem; align-self: center; margin-top: 30px">
     <h5 class="card-header  text-center ">Email verification</h5>
     <div class="card-body">
         <div class="row g-3">
             <form action="email-update" method="post">
             <div class="col">
-                <input type="text" class="form-control" name="email" value="<%= user.email %>" placeholder="email" aria-label="email">
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Email</span>
+        <input type="text" class="form-control" name="email" value="<%= user.email %>" placeholder="email" aria-label="email">
+                      </div>
+            
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-success">update Email</button>
+              
+                <button type="submit" style="width:100%"class="btn btn-danger">update Email</button>
             </div></form>
         </div>
 
 
-            <form action="/verify" method="post" style="margin-top: 50px" >
-                <button  id="btt" class="btn btn-primary " onclick="bt">send a verification E-mail to <%= user.email %></button>
+            <form action="/verify" method="post" style="margin-top: 40px" >
+                <button  id="btt" class="btn btn-success " onclick="bt">send a verification E-mail to <%= user.email %></button>
             </form>
 
     </div>

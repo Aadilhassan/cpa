@@ -308,7 +308,7 @@ res.redirect('./admin')
     });
 const fs = require("fs");
 const ejs = require("ejs");
-const data = await ejs.renderFile(__dirname + "/test.ejs", { name: 'Stranger' });
+// const data = await ejs.renderFile(__dirname + "/test.ejs", { name: 'Stranger' });
 
     const mailOptions = {
       from: 'aadilreact@yahoo.com', // sender address
