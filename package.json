@@ -2,8 +2,8 @@
  "name": "node-loginregister",
  "main": "index.js",
  "scripts": {
-  "start": "pm2 start index.js",
-  "node": "node index.js",
+  "start": "node index.js",
+  "node": "pm2 start index.js",
   "monit": "pm2 monit",
   "logs": " pm2 logs",
   "stop": "pm2 stop index.js",

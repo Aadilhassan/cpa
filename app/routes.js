@@ -188,7 +188,7 @@ res.redirect('./admin')
     })
 
   })
-
+// _____________________________
   app.get('/dashboard', isLoggedIn, function(req, res) {
     console.log(req.user.verified)
 
@@ -210,22 +210,26 @@ res.redirect('./admin')
     }
     console.log(req.user.verified)
 
-    try {
+                           });
+// ___________________________
+  
+    
+    // try {
 
-      if (req.user.verified === 0) {
-        return res.render('verify.ejs', {
-          user: req.user,
+    //   if (req.user.verified === 0) {
+    //     return res.render('verify.ejs', {
+    //       user: req.user,
 
-        });
-      }
+    //     });
+    //   }
 
-      res.render('dashboard.ejs', {
-        user: req.user,
-        country: req.query.country
-      });
-    } catch (err) {
-      res.render({ err })
-    }
+    //   res.render('dashboard.ejs', {
+    //     user: req.user,
+    //     country: req.query.country
+    //   });
+    // } catch (err) {
+    //   res.render({ err })
+    // }
 
 
 
@@ -243,15 +247,7 @@ res.redirect('./admin')
     //  });
     // }
 
-
-
-
-
-
-
-
-
-  });
+      
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
       user: req.user,
