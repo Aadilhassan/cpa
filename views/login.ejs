@@ -59,15 +59,11 @@
      <center>
 
        
-       <div class="card bg-transparent shadow-lg p-3 mb-5 bg-body rounded"    style="min-width: 220px; max-width: 400px;  margin-top: 0px ">
+       <div class="card bg-transparent shadow-lg p-3 mb-5 bg-body rounded"    style="min-width: 220px; max-width: 400px;  margin-top: -60px ">
       <form action="/login" method="post">
        <fieldset>
         <legend>Log in</legend>
-        <img
-                id="avatar"
-                class="rounded-circle"   style="width:100px; margin-:" 
-   20px   ; border-radius:100px          src="static/img/avatar.png"
-        />
+       
           <% if(message.length > 0) { %>
             <div class="alert alert-danger"><%= message %></div>
            <% } %>
@@ -101,7 +97,7 @@
   </label>
 </div>
              <button
-                class="btn btn- d-block w-100"
+                class="btn btn-primary d-block w-100"
                 type="submit"
         >
          LOGIN

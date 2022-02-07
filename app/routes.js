@@ -461,8 +461,30 @@ const ejs = require("ejs");
     // let mail = req.query.email
     let money = req.query.payout / 2
     let pass = 7091
+    let refer = req.query.subid2
 
+   if(refer){
+      let tql = "UPDATE users set amount= amount+? WHERE userid = ?";
 
+    connection.query(tql, [money/2, refer], function(err, result) {
+      console.log("Record Updated!!");
+      console.log(result);
+      // res.send(` virtual_currency "money added"`);
+
+    });
+ let lis = "INSERT INTO payinlogs (userid, amount) VALUES ?";
+    let values = [
+      [req.query.subid2, req.query.payout / 4]
+    ];
+    connection.query(lis, [values], function(err, result) {
+      console.log("Record added to the logs !!");
+      console.log(result);
+
+    });
+   }else{
+    
+
+   }
     let sql = "UPDATE users set amount= amount+? WHERE userid = ?";
 
     connection.query(sql, [money, userid], function(err, result) {
