@@ -264,7 +264,7 @@ res.redirect('./admin')
 // });
   app.get('/earnings', isLoggedIn, function(req, res) {
 
-    let pql = "SELECT * FROM payoutlogs WHERE userid = 2 && code = 0  "
+    let pql = `SELECT * FROM payoutlogs WHERE userid = ${req.user.userid} && code = 0`
     connection.query(pql, function(err, rows) {
       console.log(rows)
        if (rows.length == 0) {
@@ -394,9 +394,9 @@ const ejs = require("ejs");
     let email = req.user.email
     let sql = "INSERT INTO payoutlogs (amount, email , method , userid) VALUES  ('" + withdrawl_amount + "','" + email + "','" + method + "', '" + id + "')";
 
-    if (withdrawl_amount > req.user.amount) {
+    if (withdrawl_amount > Math.round(req.user.amount * 10) / 10) {
 
-      res.send(`you can not withdrawl $ ${withdrawl_amount} because you only have $ ${req.user.amount}`)
+      res.send(`you can not withdrawl $ ${withdrawl_amount} because you only have $ ${Math.round(req.user.amount * 10) / 10}`)
     } else {
 
 
