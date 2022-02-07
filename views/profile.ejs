@@ -68,8 +68,14 @@
    </div>
    <form method="post" action="/user-details">
     <div class="modal-body">
-     <input class="input-group" placeholder="username" style="margin-bottom: 10px" name="username" value="<%= user.username %>">
-     <input class="input-group" placeholder="email" name="email" value="<%= user.email %>">
+       <div class="input-group mb-3" id="inputGroup-sizing-sm">
+  <span class="input-group-text" id="basic-addon1">username</span>
+     <input class="form-control" type="text" placeholder="username" style="margin-bottom: 10px" name="username" required value="<%= user.name %>">
+     </div>
+        <div class="input-group mb-3" id="inputGroup-sizing-sm">
+  <span class="input-group-text" id="basic-addon1">email</span>
+     <input class="form-control" type="email" required placeholder="email" name="email" value="<%= user.email %>">
+     </div>
     </div>
     <div class="modal-footer">
      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -91,20 +97,23 @@
   <h5 class="card-title">User ID: <%= user.userid %></h5>
   <h5 class="card-title">User: <%= user.email %></h5>
   <h5 class="card-title">Balance: $<%= user.amount %></h5>
-  <div style="float: right">
-  <a href="/edit-profile" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</a></div>
- </div>
- 
-</div>
- <% if(adm == 1 ){ 
+  <div style="float: left">
+  <% if(adm == 1 ){ 
 %>
    <a href= "/admin" class="btn btn-success" >admin </a>
 <% } else{
 
  %><% } %>
+ </div>
+  <div style="float: right">
+  <a href="/edit-profile" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Profile</a></div>
+ </div>
+ 
+</div>
+ 
 
 
-<footer class="py-5 bg-black">
+<footer class="py-5 bg-black" style="margin-top:180px">
  <div class="container">
   <p class="text-center text-white m-0 small">
    Copyright&nbsp;© Money Monster 2022

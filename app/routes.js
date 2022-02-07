@@ -273,18 +273,32 @@ res.redirect('./admin')
         console.log(rows[0])
 
        }
+
+let tql = `SELECT * FROM payoutlogs WHERE userid = ${req.user.userid} && code = 1`
+    connection.query(tql, function(err, lin) {
+      console.log(lin)
+       if (lin.length == 0) {
+       console.log("There are no done payouts")
+       } else {
+        console.log(lin[0])
+
+         }
+
+      
        let sql = "SELECT * FROM payinlogs Where userid = ?"
 
       connection.query(sql, req.user.userid, function(err, result) {
+ 
         console.log(result)
         res.render('earnings.ejs', {
           logs: result,
           payoutlogs: rows,
           user: req.user,
+          donepayout: lin,
         });
       })
     })
-
+    })
   });
 
 

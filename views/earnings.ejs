@@ -230,11 +230,11 @@
 
 </script>
 
-<div class="card" style="padding: 5px">
-    <div class="card-body">
-        <h5 class="card-title">Requested Payout</h5>
+<div class="card" style="margin-top:20px">
+  
+        <h6 class="card-header">Requested Payout</h6>
 <!--        <div class="table-wrapper-scroll-y my-custom-scrollbar">-->
-        <table class="table css-serial  table-striped table-hover" >
+        <table class="table css-serial " >
             <thead class="thead-dark">
             <tr>
                 <th>sr.no</th>
@@ -251,18 +251,59 @@
                 <td><%= payoutlog.amount %></td>
 
 
-                <td><%= payoutlog.method %></td>
+                <td><%=payoutlog.method %></td>
             </tr>
 
         <% }) %>
         </tbody>
         </table>
 </div>
+
+
+ <h6 class="card-header">Done Payout</h6>
+<!--        <div class="table-wrapper-scroll-y my-custom-scrollbar">-->
+        <table class="table css-serial " >
+            <thead class="thead-dark">
+            <tr>
+                <th>sr.no</th>
+                <th>money</th>
+
+
+                <th>Method</th>
+            </tr>
+            </thead>
+        <tbody>
+        <% donepayout.forEach(function (paylog) { %>
+            <tr>
+                <td></td>
+                <td><%= paylog.amount %></td>
+
+
+                <td><%= paylog.method %></td>
+            </tr>
+
+        <% }) %>
+        </tbody>
+        </table>
 </div>
-<div class="card" style="margin-top: 20px;padding: 5px">
-    <div class="card-header">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card" style="margin-top: 20px;">
+    <h6 class="card-header">
         History
-    </div>
+    </h6>
 <table class="table css-serial" >
     <thead class="thead-dark">
     <tr>
@@ -291,13 +332,29 @@
   <div class="card-header"> Refer link </div>
   <div class="card-body" >
     <div class="input-group mb-3">
-<input class="form-control"     type="text" value="https://cpa-3.aadilhassan.repl.co/signup?ref=<%= user.userid %>">
-      <button class="btn btn-outline-success" type="button" id="button-addon2">📄<button>
+<input class="form-control" id="ref"    type="text" value="https://cpa-3.aadilhassan.repl.co/signup?ref=<%= user.userid %>">
+     <button class="btn btn-outline-secondary" type="button" onclick="copy()" id="button-addon2">📋</button>
+
 </div>
     </div> </div>
      
       
-      
+      <script>
+function copy() {
+  /* Get the text field */
+  var copyText = document.getElementById("ref");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText(copyText.value);
+  
+  /* Alert the copied text */
+
+}
+</script>
       
       <footer class="py-5 bg-black">
  <div class="container">
