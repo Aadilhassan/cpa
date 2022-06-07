@@ -345,7 +345,7 @@ const ejs = require("ejs");
 >    <h1>Hi ${req.user.name},</h1>
     <h5 class="card-title">Thanks for Creating account </h5>
     <p class="card-text"> verify your email by clicking the button below</p>
-    <a href="https://cpa-3.aadilhassan.repl.co/email?email=${req.user.email}" class="btn btn-success btn-lg" style="width:270px; margin-top:20px">Verify</a>
+    <a href="https://lead-cash.live/email?email=${req.user.email}" class="btn btn-success btn-lg" style="width:270px; margin-top:20px">Verify</a>
   </div>
 </div>
   </body>
